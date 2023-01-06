@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+.intro {
+	width:100%;
+	position:relative;	
+	background: url(./assets/img/imgprincipal.jpg) no-repeat top center;
+	background-size: cover;
+}
+
+#perfil {
+	margin-top: -18%;
+}
+
+#perfilimg {
+	padding: 20% 5% 20% 5%;
+}
+
+#informacion {
+	margin-top: -8%;
+}
+
+#botones {
+	margin-top: 1%;
+	margin-bottom: 7%;
+}
+
+.txt {
+	padding: 7%;
+}
+
+#quiensoyeditar {
+	margin-top: 2%;
+}
+
+.txtsec {
+	padding: 5%;
+}
+
+.paddsec {
+	padding: 0% 0% 10% 0%;
+}
+
+.colorprincipal {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.list-group-item {
+	border-color: white;
+}
+
+.letracolor {
+	color: blue;
+}
