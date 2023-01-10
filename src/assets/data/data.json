@@ -1,0 +1,35 @@
+{
+    "name": "José Luis Vilches",
+    "backImage": "https://i.pinimg.com/originals/88/4e/0d/884e0ddf6133fda903cf7e0270331a45.jpg",
+    "image": "https://i.pinimg.com/originals/5c/27/c4/5c27c4d24d8c264eb7f5b9167cb8d717.jpg",
+    "position": "Informático",
+    "company": {
+        "name": "FREELANCE",
+        "url": "#"
+    },
+    "ubication": "Concordia, Entre Ríos (Argentina)",
+    "about": "Bienvenido a mi sitio Web. Gracias por su visita. Soy Técnico en programación (UTN-FRCON). Me dedico al diseño y desarrollo web de forma freelance. Soy un aficionado a la tecnología y a la astronomía.",
+    "experience": [{
+        "position": "FrontEnd Developer",
+        "company": "Pixar",
+        "img": "https://i.pinimg.com/originals/6d/2f/bb/6d2fbbfd69c454ff910f9a1cbb7c2854.jpg",
+        "mode": "Jornada parcial",
+        "start": "Marzo 2019",
+        "end": " actualidad",
+        "timeelapsed": "más de 3 años"
+    }],
+    "education": [{
+        "school": "UTN",
+        "title": "Tecnicatura superior en Programación",
+        "img": "https://i.pinimg.com/originals/06/c4/b9/06c4b94745d3e4bc055fa55f95c5e964.jpg",
+        "end": "2015"
+    }],
+    "skill": [{
+        "detail": "Resolución de problemas",
+        "percentage": "75%" 
+    }],
+    "Projects": [{
+        "title": "e-Farmacia",
+        "description": "Desarrollamos un sitio web de comercio electrónico FrontEnd basado en Angular de alto tráfico con diseño innovador basado en UIX. Totalmente integrado con los sistemas CRM y ERP internos."
+    }]
+}
