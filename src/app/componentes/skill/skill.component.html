@@ -13,37 +13,16 @@
     </div>
 
     <ul class="list-group list-group-flush list-group">
-        <li class="list-group-item">
+        <li class="list-group-item" *ngFor="let skill of skillList">
             <div class="row g-0">
                 <div class="col-md-1">
                 </div>
                 <div class="col-md-9">
                     <div class="card-body">
-                        <h6 class="card-text text-center">Resolución de problemas</h6>
+                        <h6 class="card-text text-center">{{skill.detail}}</h6>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-                                style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1" href=""
-                        role="button">
-                    <img src="./assets/img/iconos/eliminar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                        href="" role="button">
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row g-0">
-                <div class="col-md-1">
-                </div>
-                <div class="col-md-9">
-                    <div class="card-body">
-                        <h6 class="card-text text-center">Diseño de sistemas</h6>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-                                style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            [style.width]="skill.percentage" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>

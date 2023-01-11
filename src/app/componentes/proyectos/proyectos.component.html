@@ -12,36 +12,14 @@
         </div>
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">
+        <li class="list-group-item" *ngFor="let proyecto of proyectoList">
             <div class="row g-0">
                 <div class="col-md-1">
                 </div>
                 <div class="col-md-9">
                     <div class="card-body">
-                        <h4 class="card-title letracolor">e-Farmacia</h4>
-                        <h6 class="card-text">Desarrollamos un sitio web de comercio electrónico FrontEnd basado en
-                            Angular de alto tráfico con diseño innovador basado en UIX. Totalmente integrado con los
-                            sistemas CRM y ERP internos.</h6>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1" href=""
-                        role="button">
-                    <img src="./assets/img/iconos/eliminar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                        href="" role="button">
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row g-0">
-                <div class="col-md-1">
-                </div>
-                <div class="col-md-9">
-                    <div class="card-body">
-                        <h4 class="card-title letracolor">Sistema de Monitoreo</h4>
-                        <h6 class="card-text">Desarrollamos un BackEnd basado en API Rest con la técnologia Spring
-                            Boot para proveer datos de monitoreo a aplicaciones distribuidas, también el desarrollo
-                            de interface entre sistemas de gestión para automatizar procesos.</h6>
+                        <h4 class="card-title letracolor">{{proyecto.title}}</h4>
+                        <h6 class="card-text">{{proyecto.description}}</h6>
                     </div>
                 </div>
                 <div class="col-md-2">

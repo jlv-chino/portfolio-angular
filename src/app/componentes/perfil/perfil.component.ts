@@ -7,6 +7,7 @@ import { PortfolioService } from '../../servicios/portfolio.service';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent {
+  
   miPortfolio: any;
   constructor(private datosPortfolio: PortfolioService){
 
@@ -14,7 +15,6 @@ export class PerfilComponent {
 
   ngOnInit(): void {
     this.datosPortfolio.obtenerDatos().subscribe(data => {
-      console.log(data);
       this.miPortfolio = data;
     });
   }
