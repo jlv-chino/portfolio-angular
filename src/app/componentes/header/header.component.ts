@@ -10,6 +10,8 @@ import { AutentificacionService } from '../../servicios/autentificacion.service'
 })
 export class HeaderComponent {
 
+  buttonText: string = 'Login';
+
   public myForm!:FormGroup;
 
   miPortfolio: any;
@@ -46,6 +48,7 @@ export class HeaderComponent {
 
     if (this.loginPrd.ingresarAplicativo(this.myForm.value)) {
       alert("Usuario correcto!!!");
+      this.buttonText = 'Logout';
     }
 
     console.log(this.myForm.value);
