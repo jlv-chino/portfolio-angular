@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 import { PortfolioService } from '../../servicios/portfolio.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { PortfolioService } from '../../servicios/portfolio.service';
 export class EducacionComponent {
 
   educacionList: any;
-  constructor(private datosPortfolio: PortfolioService){
+  constructor(private datosPortfolio: PortfolioService, private loginPrd: AutentificacionService){
 
   }
 
@@ -19,5 +20,8 @@ export class EducacionComponent {
     });
   }
 
+  public visualizarBotones():boolean{
+    return this.loginPrd.hablitarLogeo()
+  }
 
 }

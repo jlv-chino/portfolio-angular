@@ -6,7 +6,7 @@
         <div class="col-md-4" id="perfil">
             <img [src]="miPortfolio.image" class="img-fluid rounded-circle" id="perfilimg" alt="Imagen">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" *ngIf="visualizarBotones()">
             <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1" href=""
                 role="button">
         </div>
@@ -33,13 +33,13 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-3">
-            <button type="button" class="btn btn-outline-primary btn-lg">Tengo interés en...</button>
+            <button type="button" class="btn btn-outline-primary btn-lg" *ngIf="visualizarBotones()">Tengo interés en...</button>
         </div>
         <div class="col-md-3">
-            <button type="button" class="btn btn-outline-primary btn-lg">Añadir Sección</button>
+            <button type="button" class="btn btn-outline-primary btn-lg" *ngIf="visualizarBotones()">Añadir Sección</button>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-outline-primary btn-lg">Más...</button>
+            <button type="button" class="btn btn-outline-primary btn-lg" *ngIf="visualizarBotones()">Más...</button>
         </div>
         <div class="col-md-1">
         </div>

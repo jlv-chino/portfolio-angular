@@ -39,16 +39,22 @@
                             <a class="nav-link" aria-current="page" href="#contactame">Contáctame</a>
                         </li>
                     </ul>
-                    <form class="d-flex mt-3" role="search">
+                    <form class="d-flex mt-3" role="search" [formGroup]="myForm" (ngSubmit)="submitFormulario()">
                         <ul>
                             <div class="login">
-                                <input class="form-control me-2" type="text" placeholder="Usuario" aria-label="usuario">
+                                <input class="form-control me-2" type="text" [class.is-invalid]="f.usuario.errors && f.usuario.touched" formControlName="usuario" placeholder="Usuario" aria-label="usuario">
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    Usuario obligatorio
+                                </div>
                             </div>
                             <div class="login">
-                                <input class="form-control me-2" type="password" placeholder="Password" aria-label="password">
+                                <input class="form-control me-2" type="password" [class.is-invalid]="f.password.errors && f.password.touched" formControlName="password" placeholder="Password" aria-label="password">
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    Password obligatorio
+                                </div>
                             </div>
                             <div class="login">
-                                <button class="btn btn-success" type="submit">Login</button>
+                                <button class="btn btn-success">Login</button>
                             </div>
                         </ul>
                     </form>

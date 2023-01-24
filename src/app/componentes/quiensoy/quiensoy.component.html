@@ -7,7 +7,7 @@
                 <h6 class="card-text display-6 text-center">{{miPortfolio.about}}</h6>
             </div>
         </div>
-        <div class="col-md-1" id="quiensoyeditar">
+        <div class="col-md-1" id="quiensoyeditar" *ngIf="visualizarBotones()">
             <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1" href=""
                 role="button">
         </div>

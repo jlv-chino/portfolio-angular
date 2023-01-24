@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 import { PortfolioService } from '../../servicios/portfolio.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { PortfolioService } from '../../servicios/portfolio.service';
 export class SkillComponent {
 
   skillList: any;
-  constructor(private datosPortfolio: PortfolioService){
+  constructor(private datosPortfolio: PortfolioService, private loginPrd: AutentificacionService){
 
   }
 
@@ -17,6 +18,10 @@ export class SkillComponent {
     this.datosPortfolio.obtenerDatos().subscribe(data => {
       this.skillList = data.skill;
     });
+  }
+
+  public visualizarBotones():boolean{
+    return this.loginPrd.hablitarLogeo()
   }
 
 }
