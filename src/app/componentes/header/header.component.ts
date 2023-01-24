@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PortfolioService } from '../../servicios/portfolio.service';
 import { AutentificacionService } from '../../servicios/autentificacion.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -43,11 +45,19 @@ export class HeaderComponent {
     }
 
     if (!this.loginPrd.ingresarAplicativo(this.myForm.value)) {
-      alert("Usuario o password invalido");
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Usuario o password invalido'
+      })
     }
 
     if (this.loginPrd.ingresarAplicativo(this.myForm.value)) {
-      alert("Usuario correcto!!!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Login',
+        text: 'Usuario correcto!!!'
+      })
       this.buttonText = 'Logout';
     }
 
