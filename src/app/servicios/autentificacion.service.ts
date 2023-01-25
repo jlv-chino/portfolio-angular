@@ -14,7 +14,8 @@ export class AutentificacionService {
     return this.ingresar;
   }
 
-  public hablitarLogeo(){
+  public hablitarLogueo(){
     return this.ingresar;
   }
+
 }

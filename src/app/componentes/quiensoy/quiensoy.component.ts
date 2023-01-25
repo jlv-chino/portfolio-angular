@@ -21,7 +21,7 @@ export class QuiensoyComponent {
   }
 
   public visualizarBotones():boolean{
-    return this.loginPrd.hablitarLogeo()
+    return this.loginPrd.hablitarLogueo()
   }
 
 }

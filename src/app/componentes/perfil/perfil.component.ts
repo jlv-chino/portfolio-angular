@@ -23,7 +23,7 @@ export class PerfilComponent {
   }
 
   public visualizarBotones():boolean{
-    return this.loginPrd.hablitarLogeo()
+    return this.loginPrd.hablitarLogueo()
   }
 
   public infoContacto(){

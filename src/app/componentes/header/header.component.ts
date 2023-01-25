@@ -14,6 +14,10 @@ export class HeaderComponent {
 
   buttonText: string = 'Login';
 
+  isLoggedIn: boolean = false
+
+  public inputs:boolean = true;
+
   public myForm!:FormGroup;
 
   miPortfolio: any;
@@ -32,16 +36,36 @@ export class HeaderComponent {
 
   private createMyForm(): FormGroup {
     return this.fb.group({
-      usuario:['', Validators.required],
-      password:['', Validators.required]
+      usuario: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
   public submitFormulario() {
+
+   if (this.buttonText === "Logout") {
+      this.buttonText = 'Login';
+      this.inputs = true;
+      
+      Swal.fire({
+        position: 'top-end',
+        icon: 'info',
+        title: 'Sesión cerrada con éxito',
+        showConfirmButton: false,
+        timer: 1800
+      })
+
+      setTimeout(function(){
+        window.location.reload();
+     }, 1800);
+
+      return;
+    }
+
     if (this.myForm.invalid) {
       Object.values(this.myForm.controls).forEach(control => {
         control.markAllAsTouched();
-      }) 
+      })
     }
 
     if (!this.loginPrd.ingresarAplicativo(this.myForm.value)) {
@@ -59,9 +83,8 @@ export class HeaderComponent {
         text: 'Usuario correcto!!!'
       })
       this.buttonText = 'Logout';
+      this.inputs = false;
     }
-
-    console.log(this.myForm.value);
   }
 
   public get f(): any {
