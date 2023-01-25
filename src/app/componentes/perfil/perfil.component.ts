@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 import { PortfolioService } from '../../servicios/portfolio.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -22,6 +24,18 @@ export class PerfilComponent {
 
   public visualizarBotones():boolean{
     return this.loginPrd.hablitarLogeo()
+  }
+
+  public infoContacto(){
+    Swal.fire({
+      title: 'Email: jose.luis.comvilches@gmail.com Cel: 345 x xxx xxx',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })
   }
 
 }
