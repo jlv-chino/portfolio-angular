@@ -14,8 +14,6 @@ export class HeaderComponent {
 
   buttonText: string = 'Login';
 
-  isLoggedIn: boolean = false
-
   public inputs:boolean = true;
 
   public myForm!:FormGroup;
