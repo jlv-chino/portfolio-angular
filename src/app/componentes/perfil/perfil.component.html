@@ -4,7 +4,7 @@
         <div class="col-md-4">
         </div>
         <div class="col-md-4" id="perfil">
-            <img [src]="miPortfolio.image" class="img-fluid rounded-circle" id="perfilimg" alt="Imagen">
+            <img [src]="persona.img" class="img-fluid rounded-circle" id="perfilimg" alt="Imagen">
         </div>
         <div class="col-md-4" *ngIf="visualizarBotones()">
             <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1" href=""
@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-8" id="informacion">
             <div class="card-body txt">
-                <h4 class="card-title display-5 text-center">{{miPortfolio.name}}</h4>
+                <h4 class="card-title display-5 text-center">{{persona.nombre}} {{persona.apellido}}</h4>
                 <h6 class="card-text display-6 text-center">{{miPortfolio.position}} {{miPortfolio.company.name}}</h6>
                 <h3 class="text-center">
                     <small class="text-muted">{{miPortfolio.ubication}}
