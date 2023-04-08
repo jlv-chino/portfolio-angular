@@ -1,13 +1,11 @@
 {
     "name": "José Luis Vilches",
-    "backImage": "https://i.pinimg.com/originals/88/4e/0d/884e0ddf6133fda903cf7e0270331a45.jpg",
     "image": "https://i.pinimg.com/originals/5c/27/c4/5c27c4d24d8c264eb7f5b9167cb8d717.jpg",
-    "position": "Informático",
-    "company": {
-        "name": "FREELANCE",
-        "url": "#"
-    },
+    "puesto": "Informático",
+    "compania": "FREELANCE",
     "ubication": "Concordia, Entre Ríos (Argentina)",
+    "telefono": "3456 xxx xxx",
+    "email": "jose.luis.comvilches@gmail.com",
     "aboutTitle": "Bienvenido a mi sitio Web. Gracias por su visita.",
     "about": "Soy Técnico en programación (UTN-FRCON). Me dedico al diseño y desarrollo web de forma freelance. Soy un aficionado a la tecnología y a la astronomía.",
     "experience": [

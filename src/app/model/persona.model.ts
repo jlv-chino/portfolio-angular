@@ -3,12 +3,31 @@ export class persona{
     id?: number;
     nombre?: string;
     apellido?: string;
-    img?: string;
+    imagen?: string;
+    puesto?: string;
+    compania?: string;
+    ubicacion?: string;
+    telefono?: string;
+    email?: string;
+    titulo_acerca_de?: string;
+    user?: string;
+    password?: string;
 
-    contructor(nombre: string, apellido: string, img: string){
+    contructor(nombre: string, apellido: string, imagen: string,
+               puesto: string, compania: string, ubicacion: string,
+               telefono: string, email: string, titulo_acerca_de: string, 
+               user: string, password: string){
         this.nombre = nombre;
         this.apellido = apellido;
-        this.img = img;
+        this.imagen = imagen;
+        this.puesto = puesto;
+        this.compania = compania;
+        this.ubicacion = ubicacion;
+        this.telefono= telefono;
+        this.email = email;
+        this.titulo_acerca_de = titulo_acerca_de;
+        this.user = user;
+        this.password = password;
     }
 
 }
