@@ -76,5 +76,5 @@
             "title": "Sistema de Monitoreo",
             "description": "Desarrollamos un BackEnd basado en API Rest con la técnologia Spring Boot para proveer datos de monitoreo a aplicaciones distribuidas, también el desarrollo de interface entre sistemas de gestión para automatizar procesos."
         }
-    ]
+    ]  
 }
