@@ -1,5 +1,5 @@
- <!---------------------------------------- Sección Quién soy ---------------------------------------------------->
- <div class="card mb-3" name="quiensoy" id="quiensoy">
+<!---------------------------------------- Sección Quién soy ---------------------------------------------------->
+<div class="card mb-3" name="quiensoy" id="quiensoy">
     <div class="row g-0">
         <div class="col-md-11 txt">
             <div class="card-body">
@@ -8,8 +8,35 @@
             </div>
         </div>
         <div class="col-md-1" id="quiensoyeditar" *ngIf="visualizarBotones()">
-            <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1" href=""
-                role="button">
+            <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
+                data-bs-toggle="modal" data-bs-target="#modalQuienSoy" data-bs-whatever="@mdo" href="" role="button">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalQuienSoy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar Acerca de...</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="tituloEditar" class="col-form-label">Título:</label>
+                        <input type="text" class="form-control" id="tituloEditar">
+                    </div>
+                    <div class="mb-3">
+                        <label for="acercaEditar" class="col-form-label">Acerca de...</label>
+                        <textarea class="form-control" id="acercaEditar"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success">Aceptar</button>
+            </div>
         </div>
     </div>
 </div>

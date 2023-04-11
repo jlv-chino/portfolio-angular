@@ -23,5 +23,6 @@ export class ExperienciaComponent {
   public visualizarBotones():boolean{
     return this.loginPrd.hablitarLogueo()
   }
+    
 
 }

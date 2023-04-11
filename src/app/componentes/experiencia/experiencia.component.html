@@ -1,13 +1,53 @@
-  <!---------------------------------------- Sección Experiencia ---------------------------------------------------->
-  <div class="card mb-3" name="experiencia" id="experiencia">
+<!---------------------------------------- Sección Experiencia ---------------------------------------------------->
+<div class="card mb-3" name="experiencia" id="experiencia">
     <div class="container text-center txtsec">
         <div class="row g-0">
             <div class="col-md-11">
                 <h3 class="display-5 text-center">Experiencia</h3>
             </div>
             <div class="col-md-1" *ngIf="visualizarBotones()">
-                <img src="./assets/img/iconos/agregar.svg" class="btn btn-light btn-outline-info btn-floating m-1" href=""
+                <img src="./assets/img/iconos/agregar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
+                    data-bs-toggle="modal" data-bs-target="#agregarExperiencia" data-bs-whatever="@mdo" href=""
                     role="button">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="agregarExperiencia" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Experiencia</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" id="subirImagenExperiencia"
+                                aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombreEditar" class="col-form-label">Compañia:</label>
+                            <input type="text" class="form-control" id="nombreExperiencia">
+                        </div>
+                        <div class="mb-3">
+                            <label for="apellidoEditar" class="col-form-label">Puesto:</label>
+                            <input type="text" class="form-control" id="puestoExperiencia">
+                        </div>
+                        <div class="mb-3">
+                            <label for="puestoEditar" class="col-form-label">Modalidad:</label>
+                            <input type="text" class="form-control" id="modalidadExperiencia">
+                        </div>
+
+                        
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success">Aceptar</button>
+                </div>
             </div>
         </div>
     </div>
@@ -25,13 +65,14 @@
                         <h4 class="card-title">{{experiencia.position}}</h4>
                         <h6 class="card-text">{{experiencia.company}} - {{experiencia.mode}}</h6>
                         <h5>
-                            <small class="text-muted">{{experiencia.start}} - {{experiencia.end}} - {{experiencia.timeelapsed}}</small>
+                            <small class="text-muted">{{experiencia.start}} - {{experiencia.end}} -
+                                {{experiencia.timeelapsed}}</small>
                         </h5>
                     </div>
                 </div>
                 <div class="col-md-2" *ngIf="visualizarBotones()">
-                    <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1" href=""
-                        role="button">
+                    <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
+                        href="" role="button">
                     <img src="./assets/img/iconos/eliminar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
                         href="" role="button">
                 </div>
