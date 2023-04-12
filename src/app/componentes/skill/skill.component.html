@@ -1,13 +1,42 @@
-  <!---------------------------------------- Sección Skill ---------------------------------------------------->
-  <div class="card mb-3" name="skill" id="skill">
+<!---------------------------------------- Sección Skill ---------------------------------------------------->
+<div class="card mb-3" name="skill" id="skill">
     <div class="container text-center txtsec">
         <div class="row g-0">
             <div class="col-md-11">
                 <h3 class="display-5 text-center">Hard Skill & Soft Skill</h3>
             </div>
             <div class="col-md-1" *ngIf="visualizarBotones()">
-                <img src="./assets/img/iconos/agregar.svg" class="btn btn-light btn-outline-info btn-floating m-1" href=""
-                    role="button">
+                <img src="./assets/img/iconos/agregar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
+                    href="" data-bs-toggle="modal" data-bs-target="#agregarSkill" data-bs-whatever="@mdo" role="button">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="agregarSkill" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Skill</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="tituloSkillAgregar" class="col-form-label">Título Skill:</label>
+                            <input type="text" class="form-control" id="tituloSkillAgregar" name="tituloSkillAgregar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="porcentajeSkillAgregar" class="col-form-label">Porcentaje Skill (0 -
+                                100):</label>
+                            <input type="text" class="form-control" id="porcentajeSkillAgregar"
+                                name="porcentajeSkillAgregar">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success">Aceptar</button>
+                </div>
             </div>
         </div>
     </div>
@@ -22,15 +51,51 @@
                         <h6 class="card-text text-center">{{skill.detail}}</h6>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-                            [style.width]="skill.percentage" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                [style.width]="skill.percentage" aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2" *ngIf="visualizarBotones()">
-                    <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1" href=""
+                    <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
+                        href="" data-bs-toggle="modal" data-bs-target="#editarSkill" data-bs-whatever="@mdo"
                         role="button">
+
+                    <div class="modal fade" id="editarSkill" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Skill</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="tituloSkillEditar" class="col-form-label">Título Skill:</label>
+                                            <input type="text" class="form-control" id="tituloSkillEditar"
+                                                name="tituloSkillEditar">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="porcentajeSkillEditar" class="col-form-label">Porcentaje
+                                                Skill (0 - 100):</label>
+                                            <input type="text" class="form-control" id="porcentajeSkillEditar"
+                                                name="porcentajeSkillEditar">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-success">Aceptar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <img src="./assets/img/iconos/eliminar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                        href="" role="button">
+                        href="" role="button" (click)="eliminarSkill()">
                 </div>
             </div>
         </li>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import Swal from 'sweetalert2';
 import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 import { PortfolioService } from '../../servicios/portfolio.service';
 
@@ -22,6 +23,26 @@ export class SkillComponent {
 
   public visualizarBotones():boolean{
     return this.loginPrd.hablitarLogueo()
+  }
+
+  public eliminarSkill(){
+    Swal.fire({
+      title: '¿Desea eliminar este Skill?',
+      text: "Eliminar definitivamente",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ok'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Skill eliminado!!!',
+          'Tu skill fue eliminado',
+          'success'
+        )
+      }
+    })
   }
 
 }

@@ -1,13 +1,53 @@
-  <!---------------------------------------- Sección Educación ---------------------------------------------------->
-  <div class="card mb-3" name="educacion" id="educacion">
+<!---------------------------------------- Sección Educación ---------------------------------------------------->
+<div class="card mb-3" name="educacion" id="educacion">
     <div class="container text-center txtsec">
         <div class="row g-0">
             <div class="col-md-11">
                 <h3 class="display-5 text-center">Educación</h3>
             </div>
             <div class="col-md-1" *ngIf="visualizarBotones()">
-                <img src="./assets/img/iconos/agregar.svg" class="btn btn-light btn-outline-info btn-floating m-1" href=""
+                <img src="./assets/img/iconos/agregar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
+                    href="" data-bs-toggle="modal" data-bs-target="#agregarEducacion" data-bs-whatever="@mdo"
                     role="button">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="agregarEducacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Educación</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="url" class="col-form-label">Ingrese imagen/icono de educación:</label>
+                            <input type="url" class="form-control" name="imagenEducacionAgregar"
+                                id="imagenEducacionAgregar" placeholder="https://example.com" pattern="https://.*">
+                        </div>
+                        <div class="mb-3">
+                            <label for="establecimientoEducacionAgregar" class="col-form-label">Establecimiento:</label>
+                            <input type="text" class="form-control" id="establecimientoEducacionAgregar"
+                                name="establecimientoEducacionAgregar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tituloEducacionAgregar" class="col-form-label">Título:</label>
+                            <input type="text" class="form-control" id="tituloEducacionAgregar"
+                                name="tituloEducacionAgregar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaFinEducacionAgregar" class="col-form-label">Fecha de fin:</label>
+                            <input type="date" class="form-control" id="fechaFinEducacionAgregar"
+                                name="fechaFinEducacionAgregar">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success">Aceptar</button>
+                </div>
             </div>
         </div>
     </div>
@@ -27,10 +67,102 @@
                     </div>
                 </div>
                 <div class="col-md-2" *ngIf="visualizarBotones()">
-                    <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1" href=""
+                    <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
+                        data-bs-toggle="modal" data-bs-target="#editarEducacion" data-bs-whatever="@mdo" href=""
                         role="button">
+
+                    <div class="modal fade" id="editarEducacion" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar esta Educación</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="modal fade" id="agregarEducacion" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar
+                                                            Educación</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="mb-3">
+                                                                <label for="url" class="col-form-label">Ingrese
+                                                                    imagen/icono de educación:</label>
+                                                                <input type="url" class="form-control"
+                                                                    name="imagenEducacionAgregar"
+                                                                    id="imagenEducacionAgregar"
+                                                                    placeholder="https://example.com"
+                                                                    pattern="https://.*">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="establecimientoEducacionAgregar"
+                                                                    class="col-form-label">Establecimiento:</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="establecimientoEducacionAgregar"
+                                                                    name="establecimientoEducacionAgregar">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="tituloEducacionAgregar"
+                                                                    class="col-form-label">Título:</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="tituloEducacionAgregar"
+                                                                    name="tituloEducacionAgregar">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="fechaFinEducacionAgregar"
+                                                                    class="col-form-label">Fecha de fin:</label>
+                                                                <input type="date" class="form-control"
+                                                                    id="fechaFinEducacionAgregar"
+                                                                    name="fechaFinEducacionAgregar">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-bs-dismiss="modal">Cancelar</button>
+                                                        <button type="button" class="btn btn-success">Aceptar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="establecimientoEducacionEditar"
+                                                class="col-form-label">Establecimiento:</label>
+                                            <input type="text" class="form-control" id="establecimientoEducacionEditar"
+                                                name="establecimientoEducacionEditar">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="tituloEducacionEditar" class="col-form-label">Título:</label>
+                                            <input type="text" class="form-control" id="tituloEducacionEditar">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="fechaFinEducacionEditar" class="col-form-label">Fecha de
+                                                fin:</label>
+                                            <input type="date" class="form-control" id="fechaFinEducacionEditar"
+                                                name="fechaFinEducacionEditar">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-success">Aceptar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <img src="./assets/img/iconos/eliminar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                        href="" role="button">
+                        href="" role="button" (click)="eliminarEducacion()">
                 </div>
             </div>
     </ul>

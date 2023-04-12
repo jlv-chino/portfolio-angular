@@ -1,33 +1,144 @@
-  <!---------------------------------------- Sección Proyectos ---------------------------------------------------->
-  <div class="card mb-3" name="proyectos" id="proyectos">
+<!---------------------------------------- Sección Proyectos ---------------------------------------------------->
+<div class="card mb-3" name="proyectos" id="proyectos">
     <div class="container text-center txtsec">
         <div class="row g-0">
             <div class="col-md-11">
                 <h3 class="display-5 text-center">Proyectos</h3>
             </div>
             <div class="col-md-1" *ngIf="visualizarBotones()">
-                <img src="./assets/img/iconos/agregar.svg" class="btn btn-light btn-outline-info btn-floating m-1" href=""
+                <img src="./assets/img/iconos/agregar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
+                    href="" data-bs-toggle="modal" data-bs-target="#agregarProyecto" data-bs-whatever="@mdo"
                     role="button">
             </div>
-            
         </div>
     </div>
+
+    <div class="modal fade" id="agregarProyecto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Proyecto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="url" class="col-form-label">Ingrese imagen del proyecto:</label>
+                            <input type="url" class="form-control" name="imagenProyectoAgregar"
+                                id="imagenProyectoAgregar" placeholder="https://example.com" pattern="https://.*">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombreProyectoAgregar" class="col-form-label">Nombre del proyecto:</label>
+                            <input type="text" class="form-control" id="nombreProyectoAgregar"
+                                name="nombreProyectoAgregar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcionProyectoAgregar" class="col-form-label">Descripción:</label>
+                            <input type="text" class="form-control" id="descripcionProyectoAgregar"
+                                name="descripcionProyectoAgregar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="url" class="col-form-label">URL del repositorio:</label>
+                            <input type="url" class="form-control" name="urlProyectoAgregar" id="urlProyectoAgregar"
+                                placeholder="https://example.com" pattern="https://.*">
+                        </div>
+                        <div class="mb-3">
+                            <label for="url" class="col-form-label">URL del deploy:</label>
+                            <input type="url" class="form-control" name="deployProyectoAgregar"
+                                id="deployProyectoAgregar" placeholder="https://example.com" pattern="https://.*">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <ul class="list-group list-group-flush">
         <li class="list-group-item" *ngFor="let proyecto of proyectoList">
             <div class="row g-0">
                 <div class="col-md-1">
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-4 pe-4">
+                    <div>
+                        <img src="https://i.pinimg.com/originals/f1/11/db/f111db95e54b8e1e0b5c9d8519e35d59.jpg"
+                            class="img-fluid" alt="Imagen">
+                    </div>
+                </div>
+                <div class="col-md-5">
                     <div class="card-body">
                         <h4 class="card-title letracolor">{{proyecto.title}}</h4>
-                        <h6 class="card-text">{{proyecto.description}}</h6>
+                        <h5 class="card-text">{{proyecto.description}}</h5>
+                        <a href="https://github.com/jlv-chino" target="_blank">
+                            <h6 class="card-text">Link al repositorio</h6>
+                        </a>
+                        <a href="https://github.com/jlv-chino" target="_blank">
+                            <h6 class="card-text">Link al deploy</h6>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-2" *ngIf="visualizarBotones()">
-                    <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1" href=""
+                    <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
+                        href="" data-bs-toggle="modal" data-bs-target="#editarProyecto" data-bs-whatever="@mdo"
                         role="button">
+
+                    <div class="modal fade" id="editarProyecto" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Proyecto</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="url" class="col-form-label">Ingrese imagen del proyecto:</label>
+                                            <input type="url" class="form-control" name="imagenProyectoEditar"
+                                                id="imagenProyectoEditar" placeholder="https://example.com"
+                                                pattern="https://.*">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nombreProyectoEditar" class="col-form-label">Nombre del
+                                                proyecto:</label>
+                                            <input type="text" class="form-control" id="nombreProyectoEditar"
+                                                name="nombreProyectoEditar">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="descripcionProyectoEditar"
+                                                class="col-form-label">Descripción:</label>
+                                            <input type="text" class="form-control" id="descripcionProyectoEditar"
+                                                name="descripcionProyectoEditar">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="url" class="col-form-label">URL del repositorio:</label>
+                                            <input type="url" class="form-control" name="urlProyectoEditar"
+                                                id="urlProyectoEditar" placeholder="https://example.com"
+                                                pattern="https://.*">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="url" class="col-form-label">URL del deploy:</label>
+                                            <input type="url" class="form-control" name="deployProyectoEditar"
+                                                id="deployProyectoEditar" placeholder="https://example.com"
+                                                pattern="https://.*">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-success">Aceptar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <img src="./assets/img/iconos/eliminar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                        href="" role="button">
+                        href="" role="button" (click)="eliminarProyecto()">
                 </div>
             </div>
         </li>
