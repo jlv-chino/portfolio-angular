@@ -14,8 +14,6 @@ export class PerfilComponent {
 
   persona: persona = new persona();
 
-  miPortfolio: any;
-
   constructor(public personaService: PersonaService, private loginPrd: AutentificacionService){
 
   }

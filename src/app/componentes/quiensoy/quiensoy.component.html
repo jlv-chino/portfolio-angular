@@ -3,8 +3,8 @@
     <div class="row g-0">
         <div class="col-md-11 txt">
             <div class="card-body">
-                <h4 class="card-title display-5 text-center">{{miPortfolio.aboutTitle}}</h4>
-                <h6 class="card-text display-6 text-center">{{miPortfolio.about}}</h6>
+                <h4 class="card-title display-5 text-center">{{persona.titulo_acerca_de}}</h4>
+                <h6 class="card-text display-6 text-center">{{persona.acerca_de}}</h6>
             </div>
         </div>
         <div class="col-md-1" id="quiensoyeditar" *ngIf="visualizarBotones()">
@@ -25,11 +25,11 @@
                 <form>
                     <div class="mb-3">
                         <label for="tituloEditar" class="col-form-label">Título:</label>
-                        <input type="text" class="form-control" id="tituloEditar">
+                        <input type="text" class="form-control" id="tituloEditar" value={{persona.titulo_acerca_de}}>
                     </div>
                     <div class="mb-3">
                         <label for="acercaEditar" class="col-form-label">Acerca de...</label>
-                        <textarea class="form-control" id="acercaEditar"></textarea>
+                        <textarea class="form-control" id="acercaEditar" value={{persona.acerca_de}}></textarea>
                     </div>
                 </form>
             </div>
