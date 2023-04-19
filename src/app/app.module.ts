@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +15,8 @@ import { ContactameComponent } from './componentes/contactame/contactame.compone
 import { FooterComponent } from './componentes/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InicioComponent } from './componentes/inicio/inicio.component';
+import { PruebaComponent } from './componentes/prueba/prueba.component';
 
 @NgModule({
   declarations: [
@@ -26,14 +29,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SkillComponent,
     ProyectosComponent,
     ContactameComponent,
-    FooterComponent
+    FooterComponent,
+    InicioComponent,
+    PruebaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

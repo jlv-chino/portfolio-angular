@@ -8,11 +8,12 @@
     </div>
     <div class="col-md-4" *ngIf="visualizarBotones()">
       <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-        data-bs-toggle="modal" data-bs-target="#modalPerfil" data-bs-whatever="@mdo" href="" role="button">
+        data-bs-toggle="modal" data-bs-target="#modalPerfil" data-bs-whatever="@mdo"
+        href="http://localhost:8080/persona/editar/1" role="button" (click)="openFormulario()">
     </div>
   </div>
 
-  <div class="modal fade" id="modalPerfil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -20,49 +21,49 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="">
+          <form (ngSubmit)="updatePersona()">
             <div class="mb-3">
               <label for="url" class="col-form-label">Ingrese URL de la imagen de perfil:</label>
               <input type="url" class="form-control" name="imagenPerfil" id="imagenPerfil"
                 placeholder="https://example.com" pattern="https://.*">
             </div>
             <div class="mb-3">
-              <label for="nombreEditar" class="col-form-label">Nombre:</label>
-              <input type="text" class="form-control" id="nombreEditar" value={{persona.nombre}}>
+              <label for="nombre" class="col-form-label">Nombre:</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" value={{persona.nombre}}>
             </div>
             <div class="mb-3">
-              <label for="apellidoEditar" class="col-form-label">Apellido:</label>
-              <input type="text" class="form-control" id="apellidoEditar" value={{persona.apellido}}>
+              <label for="apellido" class="col-form-label">Apellido:</label>
+              <input type="text" class="form-control" id="apellido" name="apellido" value={{persona.apellido}}>
             </div>
             <div class="mb-3">
-              <label for="puestoEditar" class="col-form-label">Puesto:</label>
-              <input type="text" class="form-control" id="puestoEditar" value={{persona.puesto}}>
+              <label for="puesto" class="col-form-label">Puesto:</label>
+              <input type="text" class="form-control" id="puesto" name="puesto" value={{persona.puesto}}>
             </div>
             <div class="mb-3">
-              <label for="companiaEditar" class="col-form-label">Compañia:</label>
-              <input type="text" class="form-control" id="companiaEditar" value={{persona.compania}}>
+              <label for="compania" class="col-form-label">Compañia:</label>
+              <input type="text" class="form-control" id="compania" name="compania" value={{persona.compania}}>
             </div>
             <div class="mb-3">
-              <label for="ubicacionEditar" class="col-form-label">Ubicación:</label>
-              <input type="text" class="form-control" id="ubicacionEditar" value={{persona.ubicacion}}>
+              <label for="ubicacion" class="col-form-label">Ubicación:</label>
+              <input type="text" class="form-control" id="ubicacion" name="ubicacion" value={{persona.ubicacion}}>
             </div>
             <div class="mb-3">
-              <label for="emailEditar" class="col-form-label">Email:</label>
-              <input type="email" class="form-control" id="emailEditar" value={{persona.email}}>
+              <label for="email" class="col-form-label">Email:</label>
+              <input type="email" class="form-control" id="email" name="email" value={{persona.email}}>
             </div>
             <div class="mb-3">
-              <label for="telefonoEditar" class="col-form-label">Teléfono:</label>
-              <input type="tel" class="form-control" id="telefonoEditar" value={{persona.telefono}}>
+              <label for="telefono" class="col-form-label">Teléfono:</label>
+              <input type="tel" class="form-control" id="telefono" name="telefono" value={{persona.telefono}}>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-success">Aceptar</button>
             </div>
           </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-success">Aceptar</button>
-        </div>
       </div>
     </div>
-  </div>
+  </div> --> 
 
   <div class="row g-0 pb-4">
     <div class="col-md-2">

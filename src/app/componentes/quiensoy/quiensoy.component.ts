@@ -12,7 +12,7 @@ import { PersonaService } from 'src/app/servicios/persona.service';
 })
 export class QuiensoyComponent {
 
-  persona: persona = new persona();
+  persona: persona = new persona("", "", "", "", "","", "", "", "", "", "","");
 
   miPortfolio: any;
   constructor(public personaService: PersonaService, private loginPrd: AutentificacionService){

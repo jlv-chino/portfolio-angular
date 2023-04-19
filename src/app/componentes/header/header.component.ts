@@ -14,13 +14,13 @@ export class HeaderComponent {
 
   buttonText: string = 'Login';
 
-  public inputs:boolean = true;
+  public inputs: boolean = true;
 
-  public myForm!:FormGroup;
+  public myForm!: FormGroup;
 
   miPortfolio: any;
 
-  constructor(private datosPortfolio: PortfolioService, private fb: FormBuilder, private loginPrd:AutentificacionService) {
+  constructor(private datosPortfolio: PortfolioService, private fb: FormBuilder, private loginPrd: AutentificacionService) {
 
   }
 
@@ -41,10 +41,10 @@ export class HeaderComponent {
 
   public submitFormulario() {
 
-   if (this.buttonText === "Logout") {
+    if (this.buttonText === "Logout") {
       this.buttonText = 'Login';
       this.inputs = true;
-      
+
       Swal.fire({
         position: 'top-end',
         icon: 'info',
@@ -53,9 +53,9 @@ export class HeaderComponent {
         timer: 1800
       })
 
-      setTimeout(function(){
+      setTimeout(function () {
         window.location.reload();
-     }, 1800);
+      }, 1800);
 
       return;
     }

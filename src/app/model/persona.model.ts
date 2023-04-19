@@ -14,9 +14,9 @@ export class persona{
     user?: string;
     password?: string;
 
-    contructor(nombre: string, apellido: string, imagen: string,
+    constructor(nombre: string, apellido: string, imagen: string,
                puesto: string, compania: string, ubicacion: string,
-               telefono: string, email: string, titulo_acerca_de: string, 
+               telefono: string, email: string, titulo_acerca_de: string,
                acerca_de: string, user: string, password: string){
         this.nombre = nombre;
         this.apellido = apellido;
