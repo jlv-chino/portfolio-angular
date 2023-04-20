@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 
 import Swal from 'sweetalert2';
-import { persona } from 'src/app/model/persona.model';
+import { Persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/servicios/persona.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiensoy',
@@ -12,17 +13,19 @@ import { PersonaService } from 'src/app/servicios/persona.service';
 })
 export class QuiensoyComponent {
 
-  persona: persona = new persona();
+  id: number;
+  persona: Persona;
 
   miPortfolio: any;
-  constructor(public personaService: PersonaService, private loginPrd: AutentificacionService){
-
-  }
+  constructor(private personaService: PersonaService, private loginPrd: AutentificacionService,
+    private route: ActivatedRoute, private router: Router){}
 
   ngOnInit(): void {
     
-    this.personaService.getPersona().subscribe(data => {
-      this.persona = data;
+    this.id = 1;
+    this.persona = new Persona("", "", "", "", "", "", "", "", "", "", "","");
+    this.personaService.obtenerPerfil(this.id).subscribe(data => {
+    this.persona= data;
     });
 
   }

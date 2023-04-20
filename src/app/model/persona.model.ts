@@ -1,20 +1,20 @@
-export class persona{
+export class Persona{
 
-    id?: number;
-    nombre?: string;
-    apellido?: string;
-    imagen?: string;
-    puesto?: string;
-    compania?: string;
-    ubicacion?: string;
-    telefono?: string;
-    email?: string;
-    titulo_acerca_de?: string;
-    acerca_de?: string;
-    user?: string;
-    password?: string;
+    id: number;
+    nombre: string;
+    apellido: string;
+    imagen: string;
+    puesto: string;
+    compania: string;
+    ubicacion: string;
+    telefono: string;
+    email: string;
+    titulo_acerca_de: string;
+    acerca_de: string;
+    user: string;
+    password: string;
 
-    contructor(nombre: string, apellido: string, imagen: string,
+   constructor(nombre: string, apellido: string, imagen: string,
                puesto: string, compania: string, ubicacion: string,
                telefono: string, email: string, titulo_acerca_de: string, 
                acerca_de: string, user: string, password: string){

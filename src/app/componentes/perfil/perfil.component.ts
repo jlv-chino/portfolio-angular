@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 
 import Swal from 'sweetalert2';
-import { persona } from 'src/app/model/persona.model';
+import { Persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/servicios/persona.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -12,17 +14,24 @@ import { PersonaService } from 'src/app/servicios/persona.service';
 })
 export class PerfilComponent {
 
-  persona: persona = new persona();
+  id: number;
+  persona: Persona;
 
-  constructor(public personaService: PersonaService, private loginPrd: AutentificacionService){
-
-  }
+  constructor(private personaService: PersonaService, private loginPrd: AutentificacionService,
+              private route: ActivatedRoute, private router: Router)
+              //private modal: NgbActiveModal)
+              {}
 
   ngOnInit(): void {
-
-    this.personaService.getPersona().subscribe(data => {
-      this.persona = data;
+    this.id = 1;
+    this.persona = new Persona("", "", "", "", "", "", "", "", "", "", "","");
+    this.personaService.obtenerPerfil(this.id).subscribe(data => {
+    this.persona= data;
     });
+
+    /*this.personaService.obtenerPerfil.subscribe(data => {
+      this.persona = data;
+    });*/
 
   }
 
@@ -41,5 +50,27 @@ export class PerfilComponent {
       }
     })
   }
+
+  /*updatePersona(): void {
+    this.personaService.actualizarPersona(1, this.persona).subscribe(
+      data => {
+        alert("Persona actualizado ");
+      }, err => {
+        alert("Error ");
+      })
+    
+  }*/
+
+  updatePersona(){
+    this.personaService.actualizarPersona(this.id,this.persona).subscribe(data => {
+      alert("Perfecto!!!");
+      //this.router.navigate(['']);
+    },err => alert(err.message));
+  }
+
+  /*openFormulario(id: number){
+    this.router.navigate(['/editar', id]);
+  }*/
+
 
 }

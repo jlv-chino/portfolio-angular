@@ -7,62 +7,40 @@
       <img [src]="persona.imagen" class="img-fluid rounded-circle" id="perfilimg" alt="Imagen">
     </div>
     <div class="col-md-4" *ngIf="visualizarBotones()">
-      <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-        data-bs-toggle="modal" data-bs-target="#modalPerfil" data-bs-whatever="@mdo" href="" role="button">
+      <!--<button class="btn btn-light btn-outline-info btn-floating m-1" routerLink="/editar/{{persona.id}}">
+        <img src="./assets/img/iconos/editar.svg" />
+      </button>-->
+      <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
+        data-bs-target="#editarPerfil" data-bs-whatever="@mdo">
+        <img src="./assets/img/iconos/editar.svg" />
+      </button>
     </div>
   </div>
 
-  <div class="modal fade" id="modalPerfil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <div class="modal fade" id="editarPerfil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar Perfil</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Perfil</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="">
-            <div class="mb-3">
-              <label for="url" class="col-form-label">Ingrese URL de la imagen de perfil:</label>
-              <input type="url" class="form-control" name="imagenPerfil" id="imagenPerfil"
-                placeholder="https://example.com" pattern="https://.*">
+          <form (ngSubmit)="updatePersona()" #empleadoForm="ngForm">
+            <div class="form-group">
+              <label>Nombre : </label>
+              <input type="text" class="form-control" id="nombre" [(ngModel)]="persona.nombre" name="nombre" required
+                minlength="4" maxlength="10" placeholder="Digite su nombre " #nombre="ngModel">
+              <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              </div>
             </div>
-            <div class="mb-3">
-              <label for="nombreEditar" class="col-form-label">Nombre:</label>
-              <input type="text" class="form-control" id="nombreEditar" value={{persona.nombre}}>
-            </div>
-            <div class="mb-3">
-              <label for="apellidoEditar" class="col-form-label">Apellido:</label>
-              <input type="text" class="form-control" id="apellidoEditar" value={{persona.apellido}}>
-            </div>
-            <div class="mb-3">
-              <label for="puestoEditar" class="col-form-label">Puesto:</label>
-              <input type="text" class="form-control" id="puestoEditar" value={{persona.puesto}}>
-            </div>
-            <div class="mb-3">
-              <label for="companiaEditar" class="col-form-label">Compañia:</label>
-              <input type="text" class="form-control" id="companiaEditar" value={{persona.compania}}>
-            </div>
-            <div class="mb-3">
-              <label for="ubicacionEditar" class="col-form-label">Ubicación:</label>
-              <input type="text" class="form-control" id="ubicacionEditar" value={{persona.ubicacion}}>
-            </div>
-            <div class="mb-3">
-              <label for="emailEditar" class="col-form-label">Email:</label>
-              <input type="email" class="form-control" id="emailEditar" value={{persona.email}}>
-            </div>
-            <div class="mb-3">
-              <label for="telefonoEditar" class="col-form-label">Teléfono:</label>
-              <input type="tel" class="form-control" id="telefonoEditar" value={{persona.telefono}}>
-            </div>
+            <button class="btn btn-success" [disabled]="!empleadoForm.form.valid">Guardar</button>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-success">Aceptar</button>
         </div>
       </div>
     </div>
   </div>
+
 
   <div class="row g-0 pb-4">
     <div class="col-md-2">
