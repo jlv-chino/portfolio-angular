@@ -15,7 +15,6 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InicioComponent } from './componentes/inicio/inicio.component';
-import { EditarPerfilComponent } from './componentes/perfil/editar-perfil.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,7 @@ import { EditarPerfilComponent } from './componentes/perfil/editar-perfil.compon
     ProyectosComponent,
     ContactameComponent,
     FooterComponent,
-    InicioComponent,
-    EditarPerfilComponent
+    InicioComponent
   ],
   imports: [
     BrowserModule,
