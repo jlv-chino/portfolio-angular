@@ -27,44 +27,66 @@
 
               <label>Nombre : </label>
               <input type="text" class="form-control" id="nombre" [(ngModel)]="persona.nombre" name="nombre" required
-                minlength="3" maxlength="25" #nombre="ngModel">
+                minlength="3" maxlength="30" #nombre="ngModel">
               <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                <div *ngIf="nombre.errors?.['required']">
+                  Escribir un nombre !!!
+                </div>
+                <div *ngIf="nombre.errors?.['minlength']">
+                  Mínimo 3 caracteres !!!
+                </div>
+                <div *ngIf="nombre.errors?.['maxlength']">
+                  Máximo 30 caracteres !!!
+                </div>
               </div>
 
               <label>Apellido : </label>
               <input type="text" class="form-control" id="apellido"[(ngModel)]="persona.apellido" name="apellido" required
-                minlength="3" maxlength="25" #apellido="ngModel">
+                minlength="3" maxlength="30" #apellido="ngModel">
               <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
               </div>
 
               <label>Imagen : (Ingrese URL)</label>
               <input type="text" class="form-control" id="imagen" [(ngModel)]="persona.imagen" name="imagen" required
-                minlength="10" maxlength="100" #imagen="ngModel">
+                minlength="3" maxlength="100" #imagen="ngModel">
               <div class="alert alert-danger" *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
               </div>
 
               <label>Puesto : </label>
               <input type="text" class="form-control" id="puesto"[(ngModel)]="persona.puesto" name="puesto" required
-                minlength="3" maxlength="25" #puesto="ngModel">
+                minlength="3" maxlength="50" #puesto="ngModel">
               <div class="alert alert-danger" *ngIf="puesto.invalid && (puesto.dirty || puesto.touched)">
               </div>
 
               <label>Compañia : </label>
               <input type="text" class="form-control" id="compania"[(ngModel)]="persona.compania" name="compania" required
-                minlength="3" maxlength="25" #compania="ngModel">
+                minlength="3" maxlength="30" #compania="ngModel">
               <div class="alert alert-danger" *ngIf="compania.invalid && (compania.dirty || compania.touched)">
               </div>
 
               <label>Ubicación : </label>
               <input type="text" class="form-control" id="ubicacion"[(ngModel)]="persona.ubicacion" name="ubicacion" required
-                minlength="3" maxlength="50" #ubicacion="ngModel">
+                minlength="3" maxlength="100" #ubicacion="ngModel">
               <div class="alert alert-danger" *ngIf="ubicacion.invalid && (ubicacion.dirty || ubicacion.touched)">
               </div>
 
               <label>Email : </label>
               <input type="email" class="form-control" id="email"[(ngModel)]="persona.email" name="email" required
-                minlength="5" maxlength="30" #email="ngModel">
+              pattern ="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
+                minlength="5" maxlength="50" #email="ngModel">
               <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div *ngIf="email.errors?.['required']">
+                  Escribir un email !!!
+                </div>
+                <div *ngIf="email.errors?.['minlength']">
+                  Mínimo 5 caracteres !!!
+                </div>
+                <div *ngIf="email.errors?.['maxlength']">
+                  Máximo 50 caracteres !!!
+                </div>
+                <div *ngIf="email.errors?.['pattern']">
+                  Formato de email válido : nombre@gmail.com
+                </div>
               </div>
 
               <label>Teléfono : </label>

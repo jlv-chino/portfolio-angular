@@ -19,19 +19,15 @@ export class PerfilComponent {
 
   constructor(private personaService: PersonaService, private loginPrd: AutentificacionService,
               private route: ActivatedRoute, private router: Router)
-              //private modal: NgbActiveModal)
               {}
 
   ngOnInit(): void {
+
     this.id = 1;
     this.persona = new Persona("", "", "", "", "", "", "", "", "", "", "","");
     this.personaService.obtenerPerfil(this.id).subscribe(data => {
     this.persona= data;
     });
-
-    /*this.personaService.obtenerPerfil.subscribe(data => {
-      this.persona = data;
-    });*/
 
   }
 
@@ -51,26 +47,11 @@ export class PerfilComponent {
     })
   }
 
-  /*updatePersona(): void {
-    this.personaService.actualizarPersona(1, this.persona).subscribe(
-      data => {
-        alert("Persona actualizado ");
-      }, err => {
-        alert("Error ");
-      })
-    
-  }*/
-
   updatePersona(){
     this.personaService.actualizarPersona(this.id,this.persona).subscribe(data => {
       alert("Perfecto!!!");
-      //this.router.navigate(['']);
+      this.router.navigate(['']);
     },err => alert(err.message));
   }
-
-  /*openFormulario(id: number){
-    this.router.navigate(['/editar', id]);
-  }*/
-
 
 }
