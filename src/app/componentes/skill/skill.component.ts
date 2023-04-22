@@ -45,4 +45,8 @@ export class SkillComponent {
     })
   }
 
+  public addSkill(){
+    
+  }
+
 }

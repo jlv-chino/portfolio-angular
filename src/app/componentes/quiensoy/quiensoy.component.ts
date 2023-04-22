@@ -33,7 +33,7 @@ export class QuiensoyComponent {
     return this.loginPrd.hablitarLogueo()
   }
 
-  updateAcerca() {
+  public updateAcerca() {
     this.personaService.actualizarPersona(this.id, this.persona).subscribe(data => {
       Swal.fire({
         icon: 'info',

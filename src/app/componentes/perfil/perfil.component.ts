@@ -45,7 +45,7 @@ export class PerfilComponent {
     })
   }
 
-  updatePerfil() {
+  public updatePerfil() {
     this.personaService.actualizarPersona(this.id, this.persona).subscribe(data => {
       Swal.fire({
         icon: 'info',
