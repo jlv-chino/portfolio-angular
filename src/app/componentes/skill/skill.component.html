@@ -14,53 +14,53 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editarQuienSoy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="agregarSkill" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">EDITAR ACERCA DE...</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">AGREGAR SKILL</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form (ngSubmit)="addSkill()" #acercaDeForm="ngForm">
+                    <form (ngSubmit)="addSkill()" #addSkillForm="ngForm">
                         <div class="form-group">
 
-                            <label>Título para perfil: </label>
-                            <input type="text" class="form-control" id="tituloAcercaDe"
-                                [(ngModel)]="persona.titulo_acerca_de" name="tituloAcercaDe" required minlength="10"
-                                maxlength="100" #tituloAcercaDe="ngModel">
+                            <label>Descrpción de Skill: </label>
+                            <input type="text" class="form-control" id="titulo_skill"
+                                [(ngModel)]="skill.titulo_skill" name="titulo_skill" required minlength="10"
+                                maxlength="50" #titulo_skill="ngModel">
                             <div class="alert alert-danger"
-                                *ngIf="tituloAcercaDe.invalid && (tituloAcercaDe.dirty || tituloAcercaDe.touched)">
-                                <div *ngIf="tituloAcercaDe.errors?.['required']">
-                                    Escribir un título para el perfil !!!
+                                *ngIf="titulo_skill.invalid && (titulo_skill.dirty || titulo_skill.touched)">
+                                <div *ngIf="titulo_skill.errors?.['required']">
+                                    Escribir una descrición para el skill !!!
                                 </div>
-                                <div *ngIf="tituloAcercaDe.errors?.['minlength']">
+                                <div *ngIf="titulo_skill.errors?.['minlength']">
                                     Mínimo 10 caracteres !!!
                                 </div>
-                                <div *ngIf="tituloAcercaDe.errors?.['maxlength']">
+                                <div *ngIf="titulo_skill.errors?.['maxlength']">
                                     Máximo 100 caracteres !!!
                                 </div>
                             </div>
 
-                            <label>Descripción para perfil : </label>
-                            <textarea class="form-control" id="acerca_de" rows="3" [(ngModel)]="persona.acerca_de"
-                                name="acerca_de" required minlength="10" maxlength="500"
-                                #acerca_de="ngModel"></textarea>
+                            <label>Porcentaje de skill: </label>
+                            <input type="text" class="form-control" id="porcentaje_skill"
+                                [(ngModel)]="skill.porcentaje_skill" name="porcentaje_skill" required minlength="1"
+                                maxlength="3" #porcentaje_skill="ngModel">
                             <div class="alert alert-danger"
-                                *ngIf="acerca_de.invalid && (acerca_de.dirty || acerca_de.touched)">
-                                <div *ngIf="acerca_de.errors?.['required']">
-                                    Escribir una descripción !!!
+                                *ngIf="porcentaje_skill.invalid && (porcentaje_skill.dirty || porcentaje_skill.touched)">
+                                <div *ngIf="porcentaje_skill.errors?.['required']">
+                                    Escribir un porcentaje para el skill !!!
                                 </div>
-                                <div *ngIf="acerca_de.errors?.['minlength']">
-                                    Mínimo 10 caracteres !!!
+                                <div *ngIf="porcentaje_skill.errors?.['minlength']">
+                                    Mínimo 1 dígito !!!
                                 </div>
-                                <div *ngIf="acerca_de.errors?.['maxlength']">
-                                    Máximo 500 caracteres !!!
+                                <div *ngIf="porcentaje_skill.errors?.['maxlength']">
+                                    Máximo 3 dígitos !!!
                                 </div>
                             </div>
 
                         </div>
-                        <button class="btn btn-success mt-4" [disabled]="!acercaDeForm.form.valid"
+                        <button class="btn btn-success mt-4" [disabled]="!addSkillForm.form.valid"
                             data-bs-dismiss="modal">Guardar</button>
                     </form>
                 </div>
@@ -78,32 +78,20 @@
                         <h6 class="card-text text-center">{{skill.detail}}</h6>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-                                [style.width]="skill.percentage" aria-valuenow="25" aria-valuemin="0"
+                                [style.width]="skill.percentage" aria-valuemin="0"
                                 aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
+
+
+
+
                 <div class="col-md-2" *ngIf="visualizarBotones()">
                     <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
                         href="" data-bs-toggle="modal" data-bs-target="#editarSkill" data-bs-whatever="@mdo"
                         role="button">
-
-                    <div class="modal fade" id="editarSkill" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Skill</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                   
                     <img src="./assets/img/iconos/eliminar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
                         href="" role="button" (click)="eliminarSkill()">
                 </div>

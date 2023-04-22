@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
-
 import Swal from 'sweetalert2';
 import { Persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/servicios/persona.service';
