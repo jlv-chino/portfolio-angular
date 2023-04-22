@@ -7,35 +7,63 @@
                 <h6 class="card-text display-6 text-center">{{persona.acerca_de}}</h6>
             </div>
         </div>
-        <div class="col-md-1" id="quiensoyeditar" *ngIf="visualizarBotones()">
-            <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                data-bs-toggle="modal" data-bs-target="#modalQuienSoy" data-bs-whatever="@mdo" href="" role="button">
+        <div class="col-md-4" *ngIf="visualizarBotones()">
+            <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
+                data-bs-target="#editarQuienSoy" data-bs-whatever="@mdo">
+                <img src="./assets/img/iconos/editar.svg" />
+            </button>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="modalQuienSoy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editarQuienSoy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar Acerca de...</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">EDITAR ACERCA DE...</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="tituloEditar" class="col-form-label">Título:</label>
-                        <input type="text" class="form-control" id="tituloEditar" value={{persona.titulo_acerca_de}}>
+                <form (ngSubmit)="updateAcerca()" #acercaDeForm="ngForm">
+                    <div class="form-group">
+
+                        <label>Título para perfil: </label>
+                        <input type="text" class="form-control" id="tituloAcercaDe"
+                            [(ngModel)]="persona.titulo_acerca_de" name="tituloAcercaDe" required minlength="10"
+                            maxlength="100" #tituloAcercaDe="ngModel">
+                        <div class="alert alert-danger"
+                            *ngIf="tituloAcercaDe.invalid && (tituloAcercaDe.dirty || tituloAcercaDe.touched)">
+                            <div *ngIf="tituloAcercaDe.errors?.['required']">
+                                Escribir un título para el perfil !!!
+                            </div>
+                            <div *ngIf="tituloAcercaDe.errors?.['minlength']">
+                                Mínimo 10 caracteres !!!
+                            </div>
+                            <div *ngIf="tituloAcercaDe.errors?.['maxlength']">
+                                Máximo 100 caracteres !!!
+                            </div>
+                        </div>
+
+                        <label>Descripción para perfil : </label>
+                        <textarea class="form-control" id="acerca_de" rows="3" [(ngModel)]="persona.acerca_de"
+                        name="acerca_de" required minlength="10" maxlength="500" #acerca_de="ngModel"></textarea>
+                        <div class="alert alert-danger"
+                            *ngIf="acerca_de.invalid && (acerca_de.dirty || acerca_de.touched)">
+                            <div *ngIf="acerca_de.errors?.['required']">
+                                Escribir una descripción !!!
+                            </div>
+                            <div *ngIf="acerca_de.errors?.['minlength']">
+                                Mínimo 10 caracteres !!!
+                            </div>
+                            <div *ngIf="acerca_de.errors?.['maxlength']">
+                                Máximo 500 caracteres !!!
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="mb-3">
-                        <label for="acercaEditar" class="col-form-label">Acerca de...</label>
-                        <textarea class="form-control" id="acercaEditar" value={{persona.acerca_de}}></textarea>
-                    </div>
+                    <button class="btn btn-success mt-4" [disabled]="!acercaDeForm.form.valid"
+                        data-bs-dismiss="modal">Guardar</button>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success">Aceptar</button>
             </div>
         </div>
     </div>

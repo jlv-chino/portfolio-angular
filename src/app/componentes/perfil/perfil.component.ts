@@ -4,7 +4,6 @@ import { AutentificacionService } from 'src/app/servicios/autentificacion.servic
 import Swal from 'sweetalert2';
 import { Persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/servicios/persona.service';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -18,24 +17,23 @@ export class PerfilComponent {
   persona: Persona;
 
   constructor(private personaService: PersonaService, private loginPrd: AutentificacionService,
-              private route: ActivatedRoute, private router: Router)
-              {}
+    private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
 
     this.id = 1;
-    this.persona = new Persona("", "", "", "", "", "", "", "", "", "", "","");
+    this.persona = new Persona("", "", "", "", "", "", "", "", "", "", "", "");
     this.personaService.obtenerPerfil(this.id).subscribe(data => {
-    this.persona= data;
+      this.persona = data;
     });
 
   }
 
-  public visualizarBotones():boolean{
+  public visualizarBotones(): boolean {
     return this.loginPrd.hablitarLogueo()
   }
 
-  public infoContacto(){
+  public infoContacto() {
     Swal.fire({
       title: `Email: ${this.persona.email} Cel: ${this.persona.telefono}`,
       showClass: {
@@ -47,11 +45,21 @@ export class PerfilComponent {
     })
   }
 
-  updatePersona(){
-    this.personaService.actualizarPersona(this.id,this.persona).subscribe(data => {
-      alert("Perfecto!!!");
+  updatePerfil() {
+    this.personaService.actualizarPersona(this.id, this.persona).subscribe(data => {
+      Swal.fire({
+        icon: 'info',
+        title: 'Perfil actualizado !!!',
+        showConfirmButton: false,
+        timer: 1800
+      })
+
+      setTimeout(function () {
+        window.location.reload();
+      }, 1800);
+
       this.router.navigate(['']);
-    },err => alert(err.message));
+    }, err => alert(err.message));
   }
 
 }

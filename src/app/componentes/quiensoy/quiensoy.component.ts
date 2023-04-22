@@ -16,22 +16,38 @@ export class QuiensoyComponent {
   id: number;
   persona: Persona;
 
-  miPortfolio: any;
   constructor(private personaService: PersonaService, private loginPrd: AutentificacionService,
     private route: ActivatedRoute, private router: Router){}
 
   ngOnInit(): void {
     
     this.id = 1;
-    this.persona = new Persona("", "", "", "", "", "", "", "", "", "", "","");
+    this.persona = new Persona("", "", "", "", "", "", "", "", "", "", "", "");
     this.personaService.obtenerPerfil(this.id).subscribe(data => {
-    this.persona= data;
+      this.persona = data;
     });
 
   }
 
   public visualizarBotones():boolean{
     return this.loginPrd.hablitarLogueo()
+  }
+
+  updateAcerca() {
+    this.personaService.actualizarPersona(this.id, this.persona).subscribe(data => {
+      Swal.fire({
+        icon: 'info',
+        title: 'Información actualizada !!!',
+        showConfirmButton: false,
+        timer: 1800
+      })
+
+      setTimeout(function () {
+        window.location.reload();
+      }, 1800);
+
+      this.router.navigate(['']);
+    }, err => alert(err.message));
   }
 
 }

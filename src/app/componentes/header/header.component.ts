@@ -46,7 +46,6 @@ export class HeaderComponent {
       this.inputs = true;
       
       Swal.fire({
-        position: 'top-end',
         icon: 'info',
         title: 'Sesión cerrada con éxito',
         showConfirmButton: false,
