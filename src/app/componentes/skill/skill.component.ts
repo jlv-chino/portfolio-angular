@@ -16,6 +16,7 @@ export class SkillComponent {
   skillList: any;
 
   id?: number;
+  porcentaje: string = "%";
   skill: Skill = new Skill("", this.id);
 
   constructor(private datosPortfolio: PortfolioService, private loginPrd: AutentificacionService,
@@ -25,13 +26,13 @@ export class SkillComponent {
 
   ngOnInit(): void {
 
-    this.datosPortfolio.obtenerDatos().subscribe(data => {
+    /*this.datosPortfolio.obtenerDatos().subscribe(data => {
       this.skillList = data.skill;
-    });
-
-    /*this.skillService.listaDeSkill().subscribe(data => {
-      this.skillList = data;
     });*/
+
+    this.skillService.listaDeSkill().subscribe(data => {
+      this.skillList = data;
+    });
 
     /*this.id = 1;
     this.skill = new Skill("", 1);

@@ -42,7 +42,7 @@
                                 </div>
                             </div>
 
-                            <label>Porcentaje de skill: </label>
+                            <label>Porcentaje de skill %: </label>
                             <input type="text" class="form-control" id="porcentaje_skill"
                                 [(ngModel)]="skill.porcentaje_skill" name="porcentaje_skill" required minlength="1"
                                 maxlength="3" #porcentaje_skill="ngModel">
@@ -75,10 +75,10 @@
                 </div>
                 <div class="col-md-9">
                     <div class="card-body">
-                        <h6 class="card-text text-center">{{skill.detail}}</h6>
+                        <h6 class="card-text text-center">{{skill.titulo_skill}}</h6>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-                                [style.width]="skill.percentage" aria-valuemin="0"
+                                [style.width]="skill.porcentaje_skill + '%'" aria-valuemin="0"
                                 aria-valuemax="100"></div>
                         </div>
                     </div>
