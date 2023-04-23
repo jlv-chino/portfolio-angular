@@ -16,16 +16,14 @@ export class SkillComponent {
 
   id?: number;
   porcentaje: string = "%";
-  skill: Skill = new Skill("", this.id);
+  skill: Skill = new Skill();
 
-  constructor(private loginPrd: AutentificacionService,private skillService: SkillService,
-                                private router: Router) {}
+  constructor(private loginPrd: AutentificacionService, private skillService: SkillService,
+    private router: Router) { }
 
   ngOnInit(): void {
 
-    this.skillService.listaDeSkill().subscribe(data => {
-      this.skillList = data;
-    });
+    this.listSkill();
 
   }
 
@@ -72,15 +70,37 @@ export class SkillComponent {
           showConfirmButton: false,
           timer: 1800
         })
-  
+
         setTimeout(function () {
           window.location.reload();
         }, 1800);
-  
+
         this.router.navigate(['']);
       }
     })
 
+  }
+
+  private listSkill() {
+    this.skillService.listaDeSkill().subscribe(data => {
+      this.skillList = data;
+    });
+  }
+
+  public editSkill() {
+
+    this.id = 8;
+    this.skill = new Skill();
+    this.skillService.obtenerSkill(this.id).subscribe(data => {
+      this.skill = data;
+    });
+
+    this.skillService.actualizarSkill(8, this.skill).subscribe(data => {
+      alert("Perfecto!!!");
+
+      this.listSkill();
+
+    }, err => alert(err.message))
   }
 
 }

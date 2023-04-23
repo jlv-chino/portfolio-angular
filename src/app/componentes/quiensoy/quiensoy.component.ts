@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class QuiensoyComponent {
 
+  personaList: any;
   id: number;
   persona: Persona;
 
@@ -22,7 +23,7 @@ export class QuiensoyComponent {
   ngOnInit(): void {
     
     this.id = 1;
-    this.persona = new Persona("", "", "", "", "", "", "", "", "", "", "", "");
+    this.persona = new Persona();
     this.personaService.obtenerPerfil(this.id).subscribe(data => {
       this.persona = data;
     });
@@ -31,6 +32,12 @@ export class QuiensoyComponent {
 
   public visualizarBotones():boolean{
     return this.loginPrd.hablitarLogueo()
+  }
+
+  public listPersona() {
+    this.personaService.listaDePersona().subscribe(data => {
+      this.personaList = data;
+    });
   }
 
   public updateAcerca() {
@@ -42,9 +49,11 @@ export class QuiensoyComponent {
         timer: 1800
       })
 
-      setTimeout(function () {
+      this.listPersona();
+
+      /*setTimeout(function () {
         window.location.reload();
-      }, 1800);
+      }, 1800);*/
 
       this.router.navigate(['']);
     }, err => alert(err.message));

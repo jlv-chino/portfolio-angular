@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PerfilComponent {
 
+  personaList: any;
   id: number;
   persona: Persona;
 
@@ -21,7 +22,7 @@ export class PerfilComponent {
   ngOnInit(): void {
 
     this.id = 1;
-    this.persona = new Persona("", "", "", "", "", "", "", "", "", "", "", "");
+    this.persona = new Persona();
     this.personaService.obtenerPerfil(this.id).subscribe(data => {
       this.persona = data;
     });
@@ -44,6 +45,12 @@ export class PerfilComponent {
     })
   }
 
+  public listPersona() {
+    this.personaService.listaDePersona().subscribe(data => {
+      this.personaList = data;
+    });
+  }
+
   public updatePerfil() {
     this.personaService.actualizarPersona(this.id, this.persona).subscribe(data => {
       Swal.fire({
@@ -53,12 +60,15 @@ export class PerfilComponent {
         timer: 1800
       })
 
-      setTimeout(function () {
-        window.location.reload();
-      }, 1800);
+      this.listPersona();
 
-      this.router.navigate(['']);
+      /*setTimeout(function () {
+        window.location.reload();
+      }, 1800);*/
+
     }, err => alert(err.message));
   }
+
+  
 
 }

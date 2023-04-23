@@ -14,7 +14,7 @@ export class Persona{
     user: string;
     password: string;
 
-   constructor(nombre: string, apellido: string, imagen: string,
+   /*constructor(nombre: string, apellido: string, imagen: string,
                puesto: string, compania: string, ubicacion: string,
                telefono: string, email: string, titulo_acerca_de: string, 
                acerca_de: string, user: string, password: string){
@@ -30,6 +30,6 @@ export class Persona{
         this.acerca_de = acerca_de;
         this.user = user;
         this.password = password;
-    }
+    }*/
 
 }
