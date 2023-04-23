@@ -26,9 +26,8 @@
                         <div class="form-group">
 
                             <label>Descrpción de Skill: </label>
-                            <input type="text" class="form-control" id="titulo_skill"
-                                [(ngModel)]="skill.titulo_skill" name="titulo_skill" required minlength="10"
-                                maxlength="50" #titulo_skill="ngModel">
+                            <input type="text" class="form-control" id="titulo_skill" [(ngModel)]="skill.titulo_skill"
+                                name="titulo_skill" required minlength="10" maxlength="50" #titulo_skill="ngModel">
                             <div class="alert alert-danger"
                                 *ngIf="titulo_skill.invalid && (titulo_skill.dirty || titulo_skill.touched)">
                                 <div *ngIf="titulo_skill.errors?.['required']">
@@ -78,22 +77,21 @@
                         <h6 class="card-text text-center">{{skill.titulo_skill}}</h6>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-                                [style.width]="skill.porcentaje_skill + '%'" aria-valuemin="0"
-                                aria-valuemax="100"></div>
+                                [style.width]="skill.porcentaje_skill + '%'" aria-valuemin="0" aria-valuemax="100">
+                            </div>
                         </div>
                     </div>
                 </div>
 
-
-
-
                 <div class="col-md-2" *ngIf="visualizarBotones()">
-                    <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                        href="" data-bs-toggle="modal" data-bs-target="#editarSkill" data-bs-whatever="@mdo"
-                        role="button">
-                   
-                    <img src="./assets/img/iconos/eliminar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                        href="" role="button" (click)="eliminarSkill(skill.id)">
+                    <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
+                        data-bs-target="#editarSkill" data-bs-whatever="@mdo">
+                        <img src="./assets/img/iconos/editar.svg" />
+                    </button>
+
+                    <button class="btn btn-light btn-outline-info btn-floating m-1" (click)="deleteSkill(skill.id)">
+                        <img src="./assets/img/iconos/eliminar.svg" />
+                    </button>
                 </div>
             </div>
         </li>

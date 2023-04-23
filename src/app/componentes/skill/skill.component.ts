@@ -50,7 +50,7 @@ export class SkillComponent {
     }, err => alert(err.message));
   }
 
-  public eliminarSkill(id: number) {
+  public deleteSkill(id: number) {
     Swal.fire({
       title: '¿Desea eliminar este Skill?',
       text: "Eliminar definitivamente",
