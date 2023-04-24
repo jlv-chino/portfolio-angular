@@ -14,33 +14,31 @@ export class SkillComponent {
 
   skillList: any;
   id: number;
-  idUpdate: number;
   skill: Skill = new Skill();
 
   porcentaje: string = "%";
 
   constructor(private loginPrd: AutentificacionService, private skillService: SkillService,
-    private activatedRouter: ActivatedRoute) { }
+              private skillServiceAdd: SkillService) { }
 
   ngOnInit(): void {
 
     this.listSkill();
 
-    /*this.id = 13;
-    this.skillService.obtenerSkill(this.id).subscribe(data => {
+    
+
+  }
+
+  public obtenerId(id: number) {
+    alert(id);
+    this.skillService.obtenerSkill(id).subscribe(data => {
       this.skill = data;
-    });*/
-
+    });
   }
 
-  public obtenerId(idEdit: number) {
-    this.idUpdate = idEdit;
-    alert(this.idUpdate);
-  }
+  public updateSkill(id: number) {
 
-  public updateSkill() {
-
-    this.skillService.actualizarSkill(this.idUpdate, this.skill).subscribe(data => {
+    this.skillService.actualizarSkill(id, this.skill).subscribe(data => {
       alert("Perfecto!!!");
 
       this.listSkill();
@@ -77,12 +75,13 @@ export class SkillComponent {
     })
 
   }
+
   public visualizarBotones(): boolean {
     return this.loginPrd.hablitarLogueo()
   }
 
   public addSkill() {
-    this.skillService.crearSkill(this.skill).subscribe(dato => {
+    this.skillServiceAdd.crearSkill(this.skill).subscribe(dato => {
       Swal.fire({
         icon: 'info',
         title: 'Skill Agregado !!!',
