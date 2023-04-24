@@ -82,11 +82,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
                 <div class="col-md-2" *ngIf="visualizarBotones()">
                     <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
                         data-bs-target="#editarSkill" data-bs-whatever="@mdo">
@@ -102,8 +97,12 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form (ngSubmit)="editSkill()" #addSkillForm="ngForm">
+                                    <form (ngSubmit)="updateSkill()" #addSkillForm="ngForm">
                                         <div class="form-group">
+
+                                            <label>ID: </label>
+                                            <input type="text" class="form-control" id="id" [(ngModel)]="skill.id"
+                                                name="id" #id="ngModel">
 
                                             <label>Descrpción de Skill: </label>
                                             <input type="text" class="form-control" id="titulo_skill"
@@ -147,12 +146,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
                     <button class="btn btn-light btn-outline-info btn-floating m-1" (click)="deleteSkill(skill.id)">
                         <img src="./assets/img/iconos/eliminar.svg" />
                     </button>

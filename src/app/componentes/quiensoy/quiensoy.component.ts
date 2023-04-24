@@ -15,7 +15,7 @@ export class QuiensoyComponent {
 
   personaList: any;
   id: number;
-  persona: Persona;
+  persona: Persona = new Persona();;
 
   constructor(private personaService: PersonaService, private loginPrd: AutentificacionService,
     private route: ActivatedRoute, private router: Router){}
@@ -23,7 +23,6 @@ export class QuiensoyComponent {
   ngOnInit(): void {
     
     this.id = 1;
-    this.persona = new Persona();
     this.personaService.obtenerPerfil(this.id).subscribe(data => {
       this.persona = data;
     });
@@ -51,11 +50,6 @@ export class QuiensoyComponent {
 
       this.listPersona();
 
-      /*setTimeout(function () {
-        window.location.reload();
-      }, 1800);*/
-
-      this.router.navigate(['']);
     }, err => alert(err.message));
   }
 

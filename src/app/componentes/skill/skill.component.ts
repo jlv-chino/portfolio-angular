@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 import { Skill } from 'src/app/model/skill.model';
 import { SkillService } from 'src/app/servicios/skill.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-skill',
@@ -13,18 +13,32 @@ import { Router } from '@angular/router';
 export class SkillComponent {
 
   skillList: any;
-
   id?: number;
-  porcentaje: string = "%";
   skill: Skill = new Skill();
 
+  porcentaje: string = "%";
+
   constructor(private loginPrd: AutentificacionService, private skillService: SkillService,
-    private router: Router) { }
+              private activatedRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
 
     this.listSkill();
 
+    this.id = 1;
+    this.skillService.obtenerSkill(this.id).subscribe(data => {
+      this.skill = data;
+    });
+
+  }
+
+  public updateSkill(): void{
+    this.skillService.actualizarSkill(this.id, this.skill).subscribe(data => {
+      alert("Perfecto!!!");
+
+      this.listSkill();
+
+    }, err => alert(err.message))
   }
 
   public visualizarBotones(): boolean {
@@ -40,11 +54,8 @@ export class SkillComponent {
         timer: 1800
       })
 
-      setTimeout(function () {
-        window.location.reload();
-      }, 1800);
+      this.listSkill();
 
-      this.router.navigate(['']);
     }, err => alert(err.message));
   }
 
@@ -61,7 +72,7 @@ export class SkillComponent {
       if (result.isConfirmed) {
 
         this.skillService.eliminarSkill(id).subscribe(data => {
-          console.log(data);
+
         });
 
         Swal.fire({
@@ -71,11 +82,8 @@ export class SkillComponent {
           timer: 1800
         })
 
-        setTimeout(function () {
-          window.location.reload();
-        }, 1800);
+        this.listSkill();
 
-        this.router.navigate(['']);
       }
     })
 
@@ -85,22 +93,6 @@ export class SkillComponent {
     this.skillService.listaDeSkill().subscribe(data => {
       this.skillList = data;
     });
-  }
-
-  public editSkill() {
-
-    this.id = 8;
-    this.skill = new Skill();
-    this.skillService.obtenerSkill(this.id).subscribe(data => {
-      this.skill = data;
-    });
-
-    this.skillService.actualizarSkill(8, this.skill).subscribe(data => {
-      alert("Perfecto!!!");
-
-      this.listSkill();
-
-    }, err => alert(err.message))
-  }
+  } 
 
 }
