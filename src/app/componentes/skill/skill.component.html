@@ -7,7 +7,7 @@
             </div>
             <div class="col-md-1" *ngIf="visualizarBotones()">
                 <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
-                    data-bs-target="#agregarSkill" data-bs-whatever="@mdo">
+                    data-bs-target="#agregarSkill" data-bs-whatever="@mdo" (click)="limpiarSkill()">
                     <img src="./assets/img/iconos/agregar.svg" />
                 </button>
             </div>
@@ -106,11 +106,6 @@
                 <div class="modal-body">
                     <form (ngSubmit)="updateSkill(skill.id)" #addSkillForm="ngForm">
                         <div class="form-group">
-
-                            <label>ID: </label>
-                            <input type="text" class="form-control" id="id" [(ngModel)]="skill.id" #id="ngModel"
-                                value="{{skill.id}}">
-
                             <label>Descrpción de Skill: </label>
                             <input type="text" class="form-control" [(ngModel)]="skill.titulo_skill" name="titulo_skill"
                                 required minlength="10" maxlength="50" #titulo_skill="ngModel"

@@ -18,32 +18,50 @@ export class SkillComponent {
 
   porcentaje: string = "%";
 
-  constructor(private loginPrd: AutentificacionService, private skillService: SkillService,
-              private skillServiceAdd: SkillService) { }
+  constructor(private loginPrd: AutentificacionService, private skillService: SkillService) { }
 
   ngOnInit(): void {
 
-    this.listSkill();
-
-    
+    this.listSkill(); 
 
   }
 
   public obtenerId(id: number) {
-    alert(id);
     this.skillService.obtenerSkill(id).subscribe(data => {
       this.skill = data;
     });
   }
 
-  public updateSkill(id: number) {
+  public limpiarSkill(){
+    this.skill = new Skill();
+  }
 
+  public updateSkill(id: number) {
     this.skillService.actualizarSkill(id, this.skill).subscribe(data => {
-      alert("Perfecto!!!");
+      Swal.fire({
+        icon: 'info',
+        title: 'Skill Actualizado !!!',
+        showConfirmButton: false,
+        timer: 1800
+      })
 
       this.listSkill();
 
     }, err => alert(err.message))
+  }
+
+   public addSkill() {
+    this.skillService.crearSkill(this.skill).subscribe(dato => {
+      Swal.fire({
+        icon: 'info',
+        title: 'Skill Agregado !!!',
+        showConfirmButton: false,
+        timer: 1800
+      })
+
+      this.listSkill();
+
+    }, err => alert(err.message));
   }
 
   public deleteSkill(id: number) {
@@ -78,20 +96,6 @@ export class SkillComponent {
 
   public visualizarBotones(): boolean {
     return this.loginPrd.hablitarLogueo()
-  }
-
-  public addSkill() {
-    this.skillServiceAdd.crearSkill(this.skill).subscribe(dato => {
-      Swal.fire({
-        icon: 'info',
-        title: 'Skill Agregado !!!',
-        showConfirmButton: false,
-        timer: 1800
-      })
-
-      this.listSkill();
-
-    }, err => alert(err.message));
   }
 
   private listSkill() {
