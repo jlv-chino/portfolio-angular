@@ -4,7 +4,6 @@ import { AutentificacionService } from 'src/app/servicios/autentificacion.servic
 import Swal from 'sweetalert2';
 import { Persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/servicios/persona.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiensoy',
@@ -17,8 +16,9 @@ export class QuiensoyComponent {
   id: number;
   persona: Persona = new Persona();;
 
-  constructor(private personaService: PersonaService, private loginPrd: AutentificacionService,
-    private route: ActivatedRoute, private router: Router){}
+  constructor(private personaService: PersonaService, private loginPrd: AutentificacionService){
+
+  }
 
   ngOnInit(): void {
     

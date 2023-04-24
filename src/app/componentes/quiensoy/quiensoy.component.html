@@ -28,25 +28,24 @@
                     <div class="form-group">
 
                         <label>Título para perfil: </label>
-                        <input type="text" class="form-control" id="tituloAcercaDe"
-                            [(ngModel)]="persona.titulo_acerca_de" name="tituloAcercaDe" required minlength="10"
-                            maxlength="100" #tituloAcercaDe="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="persona.titulo_acerca_de"
+                            name="titulo_acerca_de" required minlength="10" maxlength="100" #titulo_acerca_de="ngModel">
                         <div class="alert alert-danger"
-                            *ngIf="tituloAcercaDe.invalid && (tituloAcercaDe.dirty || tituloAcercaDe.touched)">
-                            <div *ngIf="tituloAcercaDe.errors?.['required']">
+                            *ngIf="titulo_acerca_de.invalid && (titulo_acerca_de.dirty || titulo_acerca_de.touched)">
+                            <div *ngIf="titulo_acerca_de.errors?.['required']">
                                 Escribir un título para el perfil !!!
                             </div>
-                            <div *ngIf="tituloAcercaDe.errors?.['minlength']">
+                            <div *ngIf="titulo_acerca_de.errors?.['minlength']">
                                 Mínimo 10 caracteres !!!
                             </div>
-                            <div *ngIf="tituloAcercaDe.errors?.['maxlength']">
+                            <div *ngIf="titulo_acerca_de.errors?.['maxlength']">
                                 Máximo 100 caracteres !!!
                             </div>
                         </div>
 
                         <label>Descripción para perfil : </label>
-                        <textarea class="form-control" id="acerca_de" rows="3" [(ngModel)]="persona.acerca_de"
-                        name="acerca_de" required minlength="10" maxlength="500" #acerca_de="ngModel"></textarea>
+                        <textarea class="form-control" rows="3" [(ngModel)]="persona.acerca_de" name="acerca_de"
+                            required minlength="10" maxlength="500" #acerca_de="ngModel"></textarea>
                         <div class="alert alert-danger"
                             *ngIf="acerca_de.invalid && (acerca_de.dirty || acerca_de.touched)">
                             <div *ngIf="acerca_de.errors?.['required']">

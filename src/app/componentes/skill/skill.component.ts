@@ -13,50 +13,39 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class SkillComponent {
 
   skillList: any;
-  id?: number;
+  id: number;
+  idUpdate: number;
   skill: Skill = new Skill();
 
   porcentaje: string = "%";
 
   constructor(private loginPrd: AutentificacionService, private skillService: SkillService,
-              private activatedRouter: ActivatedRoute) { }
+    private activatedRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
 
     this.listSkill();
 
-    this.id = 1;
+    /*this.id = 13;
     this.skillService.obtenerSkill(this.id).subscribe(data => {
       this.skill = data;
-    });
+    });*/
 
   }
 
-  public updateSkill(): void{
-    this.skillService.actualizarSkill(this.id, this.skill).subscribe(data => {
+  public obtenerId(idEdit: number) {
+    this.idUpdate = idEdit;
+    alert(this.idUpdate);
+  }
+
+  public updateSkill() {
+
+    this.skillService.actualizarSkill(this.idUpdate, this.skill).subscribe(data => {
       alert("Perfecto!!!");
 
       this.listSkill();
 
     }, err => alert(err.message))
-  }
-
-  public visualizarBotones(): boolean {
-    return this.loginPrd.hablitarLogueo()
-  }
-
-  public addSkill() {
-    this.skillService.crearSkill(this.skill).subscribe(dato => {
-      Swal.fire({
-        icon: 'info',
-        title: 'Skill Agregado !!!',
-        showConfirmButton: false,
-        timer: 1800
-      })
-
-      this.listSkill();
-
-    }, err => alert(err.message));
   }
 
   public deleteSkill(id: number) {
@@ -88,11 +77,28 @@ export class SkillComponent {
     })
 
   }
+  public visualizarBotones(): boolean {
+    return this.loginPrd.hablitarLogueo()
+  }
+
+  public addSkill() {
+    this.skillService.crearSkill(this.skill).subscribe(dato => {
+      Swal.fire({
+        icon: 'info',
+        title: 'Skill Agregado !!!',
+        showConfirmButton: false,
+        timer: 1800
+      })
+
+      this.listSkill();
+
+    }, err => alert(err.message));
+  }
 
   private listSkill() {
     this.skillService.listaDeSkill().subscribe(data => {
       this.skillList = data;
     });
-  } 
+  }
 
 }
