@@ -6,6 +6,7 @@ import { Skill } from '../model/skill.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class SkillService {
   private URL = 'http://localhost:8080/skill/';
 

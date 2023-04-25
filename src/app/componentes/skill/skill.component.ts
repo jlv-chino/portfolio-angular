@@ -3,7 +3,6 @@ import Swal from 'sweetalert2';
 import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 import { Skill } from 'src/app/model/skill.model';
 import { SkillService } from 'src/app/servicios/skill.service';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-skill',
