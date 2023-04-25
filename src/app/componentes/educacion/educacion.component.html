@@ -60,7 +60,7 @@
                             </div>
 
                             <label>Fin de educación: (Dejar vacío si está en curso)</label>
-                            <input type="date" class="form-control" id="fin_educacion"
+                            <input type="month" lang="es" class="form-control" id="fin_educacion"
                                 [(ngModel)]="educacion.fin_educacion" name="fin_educacion" maxlength="10"
                                 #fin_educacion="ngModel">
                             <div class="alert alert-danger"
@@ -116,7 +116,7 @@
                 </div>
                 <div class="col-md-2" *ngIf="visualizarBotones()">
                     <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
-                        data-bs-target="#editarSkill" data-bs-whatever="@mdo"
+                        data-bs-target="#editarEducacion" data-bs-whatever="@mdo"
                         (click)="obtenerIdEducacion(educacion.id)">
                         <img src="./assets/img/iconos/editar.svg" />
                     </button>
