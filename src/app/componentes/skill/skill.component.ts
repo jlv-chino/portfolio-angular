@@ -25,7 +25,7 @@ export class SkillComponent {
 
   }
 
-  public obtenerId(id: number) {
+  public obtenerIdSkill(id: number) {
     this.skillService.obtenerSkill(id).subscribe(data => {
       this.skill = data;
     });
@@ -49,7 +49,7 @@ export class SkillComponent {
     }, err => alert(err.message))
   }
 
-   public addSkill() {
+  public addSkill() {
     this.skillService.crearSkill(this.skill).subscribe(dato => {
       Swal.fire({
         icon: 'info',

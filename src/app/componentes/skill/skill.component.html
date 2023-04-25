@@ -31,7 +31,7 @@
                             <div class="alert alert-danger"
                                 *ngIf="titulo_skill.invalid && (titulo_skill.dirty || titulo_skill.touched)">
                                 <div *ngIf="titulo_skill.errors?.['required']">
-                                    Escribir una descrición para el skill !!!
+                                    Escribir una descripción para el skill !!!
                                 </div>
                                 <div *ngIf="titulo_skill.errors?.['minlength']">
                                     Mínimo 10 caracteres !!!
@@ -84,7 +84,7 @@
                 </div>
                 <div class="col-md-2" *ngIf="visualizarBotones()">
                     <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
-                        data-bs-target="#editarSkill" data-bs-whatever="@mdo" (click)="obtenerId(skill.id)">
+                        data-bs-target="#editarSkill" data-bs-whatever="@mdo" (click)="obtenerIdSkill(skill.id)">
                         <img src="./assets/img/iconos/editar.svg" />
                     </button>
 
@@ -104,16 +104,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form (ngSubmit)="updateSkill(skill.id)" #addSkillForm="ngForm">
+                    <form (ngSubmit)="updateSkill(skill.id)" #editSkillForm="ngForm">
                         <div class="form-group">
                             <label>Descrpción de Skill: </label>
-                            <input type="text" class="form-control" [(ngModel)]="skill.titulo_skill" name="titulo_skill"
-                                required minlength="10" maxlength="50" #titulo_skill="ngModel"
-                                value="{{skill.titulo_skill}}">
+                            <input type="text" class="form-control" id="titulo_skill" [(ngModel)]="skill.titulo_skill"
+                                name="titulo_skill" required minlength="10" maxlength="50" #titulo_skill="ngModel">
                             <div class="alert alert-danger"
                                 *ngIf="titulo_skill.invalid && (titulo_skill.dirty || titulo_skill.touched)">
                                 <div *ngIf="titulo_skill.errors?.['required']">
-                                    Escribir una descrición para el skill !!!
+                                    Escribir una descripción para el skill !!!
                                 </div>
                                 <div *ngIf="titulo_skill.errors?.['minlength']">
                                     Mínimo 10 caracteres !!!
@@ -140,8 +139,8 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-success mt-4" [disabled]="!addSkillForm.form.valid"
-                            data-bs-dismiss="modal" (click)="obtenerId(skill.id)">Guardar</button>
+                        <button class="btn btn-success mt-4" [disabled]="!editSkillForm.form.valid"
+                            data-bs-dismiss="modal" (click)="obtenerIdSkill(skill.id)">Guardar</button>
                     </form>
                 </div>
             </div>
