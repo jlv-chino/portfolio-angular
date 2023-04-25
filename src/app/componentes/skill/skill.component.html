@@ -106,6 +106,7 @@
                 <div class="modal-body">
                     <form (ngSubmit)="updateSkill(skill.id)" #editSkillForm="ngForm">
                         <div class="form-group">
+
                             <label>Descrpción de Skill: </label>
                             <input type="text" class="form-control" id="titulo_skill" [(ngModel)]="skill.titulo_skill"
                                 name="titulo_skill" required minlength="10" maxlength="50" #titulo_skill="ngModel">

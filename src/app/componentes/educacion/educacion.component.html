@@ -127,5 +127,92 @@
                 </div>
             </div>
     </ul>
+
+    <div class="modal fade" id="editarEducacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">EDITAR EDUCACIÓN</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form (ngSubmit)="updateEducacion(educacion.id)" #editEducacionForm="ngForm">
+                        <div class="form-group">
+
+                            <label>Establecimiento: </label>
+                            <input type="text" class="form-control" id="establecimiento_educacion"
+                                [(ngModel)]="educacion.establecimiento_educacion" name="establecimiento_educacion"
+                                required minlength="2" maxlength="50" #establecimiento_educacion="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="establecimiento_educacion.invalid && (establecimiento_educacion.dirty || establecimiento_educacion.touched)">
+                                <div *ngIf="establecimiento_educacion.errors?.['required']">
+                                    Escribir un establecimiento para la educación !!!
+                                </div>
+                                <div *ngIf="establecimiento_educacion.errors?.['minlength']">
+                                    Mínimo 2 caracteres !!!
+                                </div>
+                                <div *ngIf="establecimiento_educacion.errors?.['maxlength']">
+                                    Máximo 50 caracteres !!!
+                                </div>
+                            </div>
+
+                            <label>Título: </label>
+                            <input type="text" class="form-control" id="titulo_educacion"
+                                [(ngModel)]="educacion.titulo_educacion" name="titulo_educacion" required minlength="2"
+                                maxlength="50" #titulo_educacion="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="titulo_educacion.invalid && (titulo_educacion.dirty || titulo_educacion.touched)">
+                                <div *ngIf="titulo_educacion.errors?.['required']">
+                                    Escribir un título de educación !!!
+                                </div>
+                                <div *ngIf="titulo_educacion.errors?.['minlength']">
+                                    Mínimo 2 caracteres !!!
+                                </div>
+                                <div *ngIf="titulo_educacion.errors?.['maxlength']">
+                                    Máximo 50 caracteres !!!
+                                </div>
+                            </div>
+
+                            <label>Fin de educación: (Dejar vacío si está en curso)</label>
+                            <input type="month" lang="es" class="form-control" id="fin_educacion"
+                                [(ngModel)]="educacion.fin_educacion" name="fin_educacion" maxlength="10"
+                                #fin_educacion="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="fin_educacion.invalid && (fin_educacion.dirty || fin_educacion.touched)">
+                                <div *ngIf="fin_educacion.errors?.['maxlength']">
+                                    Máximo 10 caracteres !!!
+                                </div>
+                            </div>
+
+                            <label>Imagen de educación: (Ingrese URL)</label>
+                            <input type="text" class="form-control" id="imagen_educacion"
+                                [(ngModel)]="educacion.imagen_educacion" name="imagen_educacion" required
+                                pattern="https?:\/\/([a-zA-Z0-9]([^ @&%$\\\/()=?¿!.,:;]|\d)*+[a-zA-Z]{2,4}([\.][a-zA-Z]{2})?\/?((?<=\/)(([^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]|\d)+[\/]?)*(#(?<=#)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]*)?(\?(?<=\?)([^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+(&(?<=&)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+)*))?)?"
+                                minlength="5" maxlength="100" #imagen_educacion="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="imagen_educacion.invalid && (imagen_educacion.dirty || imagen_educacion.touched)">
+                                <div *ngIf="imagen_educacion.errors?.['required']">
+                                    Ingresar URL de imagen de educación !!!
+                                </div>
+                                <div *ngIf="imagen_educacion.errors?.['minlength']">
+                                    Mínimo 5 caracteres !!!
+                                </div>
+                                <div *ngIf="imagen_educacion.errors?.['maxlength']">
+                                    Máximo 100 caracteres !!!
+                                </div>
+                                <div *ngIf="imagen_educacion.errors?.['pattern']">
+                                    Formato de URL válida : https://www.google.com/
+                                </div>
+                            </div>
+
+                        </div>
+                        <button class="btn btn-success mt-4" [disabled]="!editEducacionForm.form.valid"
+                            data-bs-dismiss="modal" (click)="obtenerIdEducacion(educacion.id)">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <!---------------------------------------- Fin Sección Educación ---------------------------------------------------->
