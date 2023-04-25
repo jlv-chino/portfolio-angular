@@ -6,9 +6,10 @@
                 <h3 class="display-5 text-center">Educación</h3>
             </div>
             <div class="col-md-1" *ngIf="visualizarBotones()">
-                <img src="./assets/img/iconos/agregar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                    href="" data-bs-toggle="modal" data-bs-target="#agregarEducacion" data-bs-whatever="@mdo"
-                    role="button">
+                <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
+                    data-bs-target="#agregarEducacion" data-bs-whatever="@mdo" (click)="limpiarEducacion()">
+                    <img src="./assets/img/iconos/agregar.svg" />
+                </button>
             </div>
         </div>
     </div>
@@ -17,36 +18,83 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Educación</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">AGREGAR EDUCACIÓN</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="url" class="col-form-label">Ingrese imagen/icono de educación:</label>
-                            <input type="url" class="form-control" name="imagenEducacionAgregar"
-                                id="imagenEducacionAgregar" placeholder="https://example.com" pattern="https://.*">
+                    <form (ngSubmit)="addEducacion()" #addEducacionForm="ngForm">
+                        <div class="form-group">
+
+                            <label>Establecimiento: </label>
+                            <input type="text" class="form-control" id="establecimiento_educacion"
+                                [(ngModel)]="educacion.establecimiento_educacion" name="establecimiento_educacion"
+                                required minlength="2" maxlength="50" #establecimiento_educacion="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="establecimiento_educacion.invalid && (establecimiento_educacion.dirty || establecimiento_educacion.touched)">
+                                <div *ngIf="establecimiento_educacion.errors?.['required']">
+                                    Escribir un establecimiento para la educación !!!
+                                </div>
+                                <div *ngIf="establecimiento_educacion.errors?.['minlength']">
+                                    Mínimo 2 caracteres !!!
+                                </div>
+                                <div *ngIf="establecimiento_educacion.errors?.['maxlength']">
+                                    Máximo 50 caracteres !!!
+                                </div>
+                            </div>
+
+                            <label>Título: </label>
+                            <input type="text" class="form-control" id="titulo_educacion"
+                                [(ngModel)]="educacion.titulo_educacion" name="titulo_educacion" required minlength="2"
+                                maxlength="50" #titulo_educacion="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="titulo_educacion.invalid && (titulo_educacion.dirty || titulo_educacion.touched)">
+                                <div *ngIf="titulo_educacion.errors?.['required']">
+                                    Escribir un título de educación !!!
+                                </div>
+                                <div *ngIf="titulo_educacion.errors?.['minlength']">
+                                    Mínimo 2 caracteres !!!
+                                </div>
+                                <div *ngIf="titulo_educacion.errors?.['maxlength']">
+                                    Máximo 50 caracteres !!!
+                                </div>
+                            </div>
+
+                            <label>Fin de educación: (Dejar vacío si está en curso)</label>
+                            <input type="date" class="form-control" id="fin_educacion"
+                                [(ngModel)]="educacion.fin_educacion" name="fin_educacion" maxlength="10"
+                                #fin_educacion="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="fin_educacion.invalid && (fin_educacion.dirty || fin_educacion.touched)">
+                                <div *ngIf="fin_educacion.errors?.['maxlength']">
+                                    Máximo 10 caracteres !!!
+                                </div>
+                            </div>
+
+                            <label>Imagen de educación: (Ingrese URL)</label>
+                            <input type="text" class="form-control" id="imagen_educacion"
+                                [(ngModel)]="educacion.imagen_educacion" name="imagen_educacion" required
+                                pattern="https?:\/\/([a-zA-Z0-9]([^ @&%$\\\/()=?¿!.,:;]|\d)*+[a-zA-Z]{2,4}([\.][a-zA-Z]{2})?\/?((?<=\/)(([^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]|\d)+[\/]?)*(#(?<=#)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]*)?(\?(?<=\?)([^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+(&(?<=&)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+)*))?)?"
+                                minlength="5" maxlength="100" #imagen_educacion="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="imagen_educacion.invalid && (imagen_educacion.dirty || imagen_educacion.touched)">
+                                <div *ngIf="imagen_educacion.errors?.['required']">
+                                    Ingresar URL de imagen de educación !!!
+                                </div>
+                                <div *ngIf="imagen_educacion.errors?.['minlength']">
+                                    Mínimo 5 caracteres !!!
+                                </div>
+                                <div *ngIf="imagen_educacion.errors?.['maxlength']">
+                                    Máximo 100 caracteres !!!
+                                </div>
+                                <div *ngIf="imagen_educacion.errors?.['pattern']">
+                                    Formato de URL válida : https://www.google.com/
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="mb-3">
-                            <label for="establecimientoEducacionAgregar" class="col-form-label">Establecimiento:</label>
-                            <input type="text" class="form-control" id="establecimientoEducacionAgregar"
-                                name="establecimientoEducacionAgregar">
-                        </div>
-                        <div class="mb-3">
-                            <label for="tituloEducacionAgregar" class="col-form-label">Título:</label>
-                            <input type="text" class="form-control" id="tituloEducacionAgregar"
-                                name="tituloEducacionAgregar">
-                        </div>
-                        <div class="mb-3">
-                            <label for="fechaFinEducacionAgregar" class="col-form-label">Fecha de fin:</label>
-                            <input type="date" class="form-control" id="fechaFinEducacionAgregar"
-                                name="fechaFinEducacionAgregar">
-                        </div>
+                        <button class="btn btn-success mt-4" [disabled]="!addEducacionForm.form.valid"
+                            data-bs-dismiss="modal">Guardar</button>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success">Aceptar</button>
                 </div>
             </div>
         </div>
@@ -58,111 +106,24 @@
                 <div class="col-md-1">
                 </div>
                 <div class="col-md-1">
-                    <img [src]="educacion.img" class="img-fluid" alt="Imagen de UTN">
+                    <img [src]="educacion.imagen_educacion" class="img-fluid" alt="Imagen de educación">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h4 class="card-title">{{educacion.school}}</h4>
-                        <h6 class="card-text">{{educacion.title}} - {{educacion.end}}</h6>
+                        <h4 class="card-title">{{educacion.establecimiento_educacion}}</h4>
+                        <h6 class="card-text">{{educacion.titulo_educacion}} - {{educacion.fin_educacion}}</h6>
                     </div>
                 </div>
                 <div class="col-md-2" *ngIf="visualizarBotones()">
-                    <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                        data-bs-toggle="modal" data-bs-target="#editarEducacion" data-bs-whatever="@mdo" href=""
-                        role="button">
-
-                    <div class="modal fade" id="editarEducacion" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar esta Educación</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="modal fade" id="agregarEducacion" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar
-                                                            Educación</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form>
-                                                            <div class="mb-3">
-                                                                <label for="url" class="col-form-label">Ingrese
-                                                                    imagen/icono de educación:</label>
-                                                                <input type="url" class="form-control"
-                                                                    name="imagenEducacionAgregar"
-                                                                    id="imagenEducacionAgregar"
-                                                                    placeholder="https://example.com"
-                                                                    pattern="https://.*">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="establecimientoEducacionAgregar"
-                                                                    class="col-form-label">Establecimiento:</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="establecimientoEducacionAgregar"
-                                                                    name="establecimientoEducacionAgregar">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="tituloEducacionAgregar"
-                                                                    class="col-form-label">Título:</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="tituloEducacionAgregar"
-                                                                    name="tituloEducacionAgregar">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="fechaFinEducacionAgregar"
-                                                                    class="col-form-label">Fecha de fin:</label>
-                                                                <input type="date" class="form-control"
-                                                                    id="fechaFinEducacionAgregar"
-                                                                    name="fechaFinEducacionAgregar">
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-bs-dismiss="modal">Cancelar</button>
-                                                        <button type="button" class="btn btn-success">Aceptar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="establecimientoEducacionEditar"
-                                                class="col-form-label">Establecimiento:</label>
-                                            <input type="text" class="form-control" id="establecimientoEducacionEditar"
-                                                name="establecimientoEducacionEditar">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="tituloEducacionEditar" class="col-form-label">Título:</label>
-                                            <input type="text" class="form-control" id="tituloEducacionEditar">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="fechaFinEducacionEditar" class="col-form-label">Fecha de
-                                                fin:</label>
-                                            <input type="date" class="form-control" id="fechaFinEducacionEditar"
-                                                name="fechaFinEducacionEditar">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger"
-                                        data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-success">Aceptar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <img src="./assets/img/iconos/eliminar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                        href="" role="button">
+                    <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
+                        data-bs-target="#editarSkill" data-bs-whatever="@mdo"
+                        (click)="obtenerIdEducacion(educacion.id)">
+                        <img src="./assets/img/iconos/editar.svg" />
+                    </button>
+                    <button class="btn btn-light btn-outline-info btn-floating m-1"
+                        (click)="deleteEducacion(educacion.id)">
+                        <img src="./assets/img/iconos/eliminar.svg" />
+                    </button>
                 </div>
             </div>
     </ul>
