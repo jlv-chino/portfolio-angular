@@ -168,6 +168,122 @@
         </li>
     </ul>
 
+    <div class="modal fade" id="editarProyecto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">EDITAR PROYECTO</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form (ngSubmit)="updateProyecto(proyecto.id)" #editProyectoForm="ngForm">
+                        <div class="form-group">
+
+                            <label>Nombre del Proyecto: </label>
+                            <input type="text" class="form-control" id="nombre_proyecto"
+                                [(ngModel)]="proyecto.nombre_proyecto" name="nombre_proyecto" required minlength="5"
+                                maxlength="50" #nombre_proyecto="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="nombre_proyecto.invalid && (nombre_proyecto.dirty || nombre_proyecto.touched)">
+                                <div *ngIf="nombre_proyecto.errors?.['required']">
+                                    Escribir un nombre para el proyecto !!!
+                                </div>
+                                <div *ngIf="nombre_proyecto.errors?.['minlength']">
+                                    Mínimo 5 caracteres !!!
+                                </div>
+                                <div *ngIf="nombre_proyecto.errors?.['maxlength']">
+                                    Máximo 50 caracteres !!!
+                                </div>
+                            </div>
+
+                            <label>URL del repositorio del Proyecto: </label>
+                            <input type="text" class="form-control" id="url_repositorio"
+                                [(ngModel)]="proyecto.url_repositorio" name="url_repositorio" required
+                                pattern="https?:\/\/([a-zA-Z0-9]([^ @&%$\\\/()=?¿!.,:;]|\d)*+[a-zA-Z]{2,4}([\.][a-zA-Z]{2})?\/?((?<=\/)(([^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]|\d)+[\/]?)*(#(?<=#)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]*)?(\?(?<=\?)([^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+(&(?<=&)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+)*))?)?"
+                                minlength="5" maxlength="100" #url_repositorio="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="url_repositorio.invalid && (url_repositorio.dirty || url_repositorio.touched)">
+                                <div *ngIf="url_repositorio.errors?.['required']">
+                                    Ingresar URL del repositorio del proyecto!!!
+                                </div>
+                                <div *ngIf="url_repositorio.errors?.['minlength']">
+                                    Mínimo 5 caracteres !!!
+                                </div>
+                                <div *ngIf="url_repositorio.errors?.['maxlength']">
+                                    Máximo 100 caracteres !!!
+                                </div>
+                                <div *ngIf="url_repositorio.errors?.['pattern']">
+                                    Formato de URL válida : https://www.google.com/
+                                </div>
+                            </div>
+
+                            <label>URL deploy del Proyecto: </label>
+                            <input type="text" class="form-control" id="url_deploy" [(ngModel)]="proyecto.url_deploy"
+                                name="url_repositorio" required
+                                pattern="https?:\/\/([a-zA-Z0-9]([^ @&%$\\\/()=?¿!.,:;]|\d)*+[a-zA-Z]{2,4}([\.][a-zA-Z]{2})?\/?((?<=\/)(([^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]|\d)+[\/]?)*(#(?<=#)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]*)?(\?(?<=\?)([^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+(&(?<=&)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+)*))?)?"
+                                minlength="5" maxlength="100" #url_deploy="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="url_deploy.invalid && (url_deploy.dirty || url_deploy.touched)">
+                                <div *ngIf="url_deploy.errors?.['required']">
+                                    Ingresar URL deploy del proyecto!!!
+                                </div>
+                                <div *ngIf="url_deploy.errors?.['minlength']">
+                                    Mínimo 5 caracteres !!!
+                                </div>
+                                <div *ngIf="url_deploy.errors?.['maxlength']">
+                                    Máximo 100 caracteres !!!
+                                </div>
+                                <div *ngIf="url_deploy.errors?.['pattern']">
+                                    Formato de URL válida : https://www.google.com/
+                                </div>
+                            </div>
+
+                            <label>Descripción del proyecto : </label>
+                            <textarea class="form-control" rows="3" [(ngModel)]="proyecto.descripcion_proyecto"
+                                name="descripcion_proyecto" required minlength="10" maxlength="500"
+                                #descripcion_proyecto="ngModel"></textarea>
+                            <div class="alert alert-danger"
+                                *ngIf="descripcion_proyecto.invalid && (descripcion_proyecto.dirty || descripcion_proyecto.touched)">
+                                <div *ngIf="descripcion_proyecto.errors?.['required']">
+                                    Escribir una descripción del proyecto !!!
+                                </div>
+                                <div *ngIf="descripcion_proyecto.errors?.['minlength']">
+                                    Mínimo 10 caracteres !!!
+                                </div>
+                                <div *ngIf="descripcion_proyecto.errors?.['maxlength']">
+                                    Máximo 500 caracteres !!!
+                                </div>
+                            </div>
+
+                            <label>Imagen de proyecto: (Ingrese URL)</label>
+                            <input type="text" class="form-control" id="imagen_proyecto"
+                                [(ngModel)]="proyecto.imagen_proyecto" name="imagen_proyecto" required
+                                pattern="https?:\/\/([a-zA-Z0-9]([^ @&%$\\\/()=?¿!.,:;]|\d)*+[a-zA-Z]{2,4}([\.][a-zA-Z]{2})?\/?((?<=\/)(([^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]|\d)+[\/]?)*(#(?<=#)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]*)?(\?(?<=\?)([^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+(&(?<=&)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+)*))?)?"
+                                minlength="5" maxlength="100" #imagen_proyecto="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="imagen_proyecto.invalid && (imagen_proyecto.dirty || imagen_proyecto.touched)">
+                                <div *ngIf="imagen_proyecto.errors?.['required']">
+                                    Ingresar URL de imagen del proyecto !!!
+                                </div>
+                                <div *ngIf="imagen_proyecto.errors?.['minlength']">
+                                    Mínimo 5 caracteres !!!
+                                </div>
+                                <div *ngIf="imagen_proyecto.errors?.['maxlength']">
+                                    Máximo 100 caracteres !!!
+                                </div>
+                                <div *ngIf="imagen_proyecto.errors?.['pattern']">
+                                    Formato de URL válida : https://www.google.com/
+                                </div>
+                            </div>
+
+                        </div>
+                        <button class="btn btn-success mt-4" [disabled]="!editProyectoForm.form.valid"
+                            data-bs-dismiss="modal" (click)="obtenerIdProyecto(proyecto.id)">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 <!---------------------------------------- Fin Sección Proyectos ---------------------------------------------------->
