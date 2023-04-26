@@ -6,9 +6,10 @@
                 <h3 class="display-5 text-center">Proyectos</h3>
             </div>
             <div class="col-md-1" *ngIf="visualizarBotones()">
-                <img src="./assets/img/iconos/agregar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                    href="" data-bs-toggle="modal" data-bs-target="#agregarProyecto" data-bs-whatever="@mdo"
-                    role="button">
+                <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
+                    data-bs-target="#agregarProyecto" data-bs-whatever="@mdo" (click)="limpiarProyecto()">
+                    <img src="./assets/img/iconos/agregar.svg" />
+                </button>
             </div>
         </div>
     </div>
@@ -17,41 +18,114 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Proyecto</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">AGREGAR PROYECTO</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="url" class="col-form-label">Ingrese imagen del proyecto:</label>
-                            <input type="url" class="form-control" name="imagenProyectoAgregar"
-                                id="imagenProyectoAgregar" placeholder="https://example.com" pattern="https://.*">
+                    <form (ngSubmit)="addProyecto()" #addProyectoForm="ngForm">
+                        <div class="form-group">
+
+                            <label>Nombre del Proyecto: </label>
+                            <input type="text" class="form-control" id="nombre_proyecto"
+                                [(ngModel)]="proyecto.nombre_proyecto" name="nombre_proyecto" required minlength="5"
+                                maxlength="50" #nombre_proyecto="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="nombre_proyecto.invalid && (nombre_proyecto.dirty || nombre_proyecto.touched)">
+                                <div *ngIf="nombre_proyecto.errors?.['required']">
+                                    Escribir un nombre para el proyecto !!!
+                                </div>
+                                <div *ngIf="nombre_proyecto.errors?.['minlength']">
+                                    Mínimo 5 caracteres !!!
+                                </div>
+                                <div *ngIf="nombre_proyecto.errors?.['maxlength']">
+                                    Máximo 50 caracteres !!!
+                                </div>
+                            </div>
+
+                            <label>URL del repositorio del Proyecto: </label>
+                            <input type="text" class="form-control" id="url_repositorio"
+                                [(ngModel)]="proyecto.url_repositorio" name="url_repositorio" required
+                                pattern="https?:\/\/([a-zA-Z0-9]([^ @&%$\\\/()=?¿!.,:;]|\d)*+[a-zA-Z]{2,4}([\.][a-zA-Z]{2})?\/?((?<=\/)(([^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]|\d)+[\/]?)*(#(?<=#)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]*)?(\?(?<=\?)([^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+(&(?<=&)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+)*))?)?"
+                                minlength="5" maxlength="100" #url_repositorio="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="url_repositorio.invalid && (url_repositorio.dirty || url_repositorio.touched)">
+                                <div *ngIf="url_repositorio.errors?.['required']">
+                                    Ingresar URL del repositorio del proyecto!!!
+                                </div>
+                                <div *ngIf="url_repositorio.errors?.['minlength']">
+                                    Mínimo 5 caracteres !!!
+                                </div>
+                                <div *ngIf="url_repositorio.errors?.['maxlength']">
+                                    Máximo 100 caracteres !!!
+                                </div>
+                                <div *ngIf="url_repositorio.errors?.['pattern']">
+                                    Formato de URL válida : https://www.google.com/
+                                </div>
+                            </div>
+
+                            <label>URL deploy del Proyecto: </label>
+                            <input type="text" class="form-control" id="url_deploy" [(ngModel)]="proyecto.url_deploy"
+                                name="url_repositorio" required
+                                pattern="https?:\/\/([a-zA-Z0-9]([^ @&%$\\\/()=?¿!.,:;]|\d)*+[a-zA-Z]{2,4}([\.][a-zA-Z]{2})?\/?((?<=\/)(([^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]|\d)+[\/]?)*(#(?<=#)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]*)?(\?(?<=\?)([^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+(&(?<=&)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+)*))?)?"
+                                minlength="5" maxlength="100" #url_deploy="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="url_deploy.invalid && (url_deploy.dirty || url_deploy.touched)">
+                                <div *ngIf="url_deploy.errors?.['required']">
+                                    Ingresar URL deploy del proyecto!!!
+                                </div>
+                                <div *ngIf="url_deploy.errors?.['minlength']">
+                                    Mínimo 5 caracteres !!!
+                                </div>
+                                <div *ngIf="url_deploy.errors?.['maxlength']">
+                                    Máximo 100 caracteres !!!
+                                </div>
+                                <div *ngIf="url_deploy.errors?.['pattern']">
+                                    Formato de URL válida : https://www.google.com/
+                                </div>
+                            </div>
+
+                            <label>Descripción del proyecto : </label>
+                            <textarea class="form-control" rows="3" [(ngModel)]="proyecto.descripcion_proyecto"
+                                name="descripcion_proyecto" required minlength="10" maxlength="500"
+                                #descripcion_proyecto="ngModel"></textarea>
+                            <div class="alert alert-danger"
+                                *ngIf="descripcion_proyecto.invalid && (descripcion_proyecto.dirty || descripcion_proyecto.touched)">
+                                <div *ngIf="descripcion_proyecto.errors?.['required']">
+                                    Escribir una descripción del proyecto !!!
+                                </div>
+                                <div *ngIf="descripcion_proyecto.errors?.['minlength']">
+                                    Mínimo 10 caracteres !!!
+                                </div>
+                                <div *ngIf="descripcion_proyecto.errors?.['maxlength']">
+                                    Máximo 500 caracteres !!!
+                                </div>
+                            </div>
+
+                            <label>Imagen de proyecto: (Ingrese URL)</label>
+                            <input type="text" class="form-control" id="imagen_proyecto"
+                                [(ngModel)]="proyecto.imagen_proyecto" name="imagen_proyecto" required
+                                pattern="https?:\/\/([a-zA-Z0-9]([^ @&%$\\\/()=?¿!.,:;]|\d)*+[a-zA-Z]{2,4}([\.][a-zA-Z]{2})?\/?((?<=\/)(([^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]|\d)+[\/]?)*(#(?<=#)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]*)?(\?(?<=\?)([^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+(&(?<=&)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+)*))?)?"
+                                minlength="5" maxlength="100" #imagen_proyecto="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="imagen_proyecto.invalid && (imagen_proyecto.dirty || imagen_proyecto.touched)">
+                                <div *ngIf="imagen_proyecto.errors?.['required']">
+                                    Ingresar URL de imagen del proyecto !!!
+                                </div>
+                                <div *ngIf="imagen_proyecto.errors?.['minlength']">
+                                    Mínimo 5 caracteres !!!
+                                </div>
+                                <div *ngIf="imagen_proyecto.errors?.['maxlength']">
+                                    Máximo 100 caracteres !!!
+                                </div>
+                                <div *ngIf="imagen_proyecto.errors?.['pattern']">
+                                    Formato de URL válida : https://www.google.com/
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="mb-3">
-                            <label for="nombreProyectoAgregar" class="col-form-label">Nombre del proyecto:</label>
-                            <input type="text" class="form-control" id="nombreProyectoAgregar"
-                                name="nombreProyectoAgregar">
-                        </div>
-                        <div class="mb-3">
-                            <label for="descripcionProyectoAgregar" class="col-form-label">Descripción:</label>
-                            <input type="text" class="form-control" id="descripcionProyectoAgregar"
-                                name="descripcionProyectoAgregar">
-                        </div>
-                        <div class="mb-3">
-                            <label for="url" class="col-form-label">URL del repositorio:</label>
-                            <input type="url" class="form-control" name="urlProyectoAgregar" id="urlProyectoAgregar"
-                                placeholder="https://example.com" pattern="https://.*">
-                        </div>
-                        <div class="mb-3">
-                            <label for="url" class="col-form-label">URL del deploy:</label>
-                            <input type="url" class="form-control" name="deployProyectoAgregar"
-                                id="deployProyectoAgregar" placeholder="https://example.com" pattern="https://.*">
-                        </div>
+                        <button class="btn btn-success mt-4" [disabled]="!addProyectoForm.form.valid"
+                            data-bs-dismiss="modal">Guardar</button>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success">Aceptar</button>
                 </div>
             </div>
         </div>
@@ -64,84 +138,36 @@
                 </div>
                 <div class="col-md-4 pe-4">
                     <div>
-                        <img src="https://i.pinimg.com/originals/f1/11/db/f111db95e54b8e1e0b5c9d8519e35d59.jpg"
-                            class="img-fluid" alt="Imagen">
+                        <img [src]="proyecto.imagen_proyecto" class="img-fluid" alt="Imagen">
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="card-body">
-                        <h4 class="card-title letracolor">{{proyecto.title}}</h4>
-                        <h5 class="card-text">{{proyecto.description}}</h5>
-                        <a href="https://github.com/jlv-chino" target="_blank">
+                        <h4 class="card-title letracolor">{{proyecto.nombre_proyecto}}</h4>
+                        <h5 class="card-text">{{proyecto.descripcion_proyecto}}</h5>
+                        <a [href]="proyecto.url_repositorio" target="_blank">
                             <h6 class="card-text">Link al repositorio</h6>
                         </a>
-                        <a href="https://github.com/jlv-chino" target="_blank">
+                        <a [href]="proyecto.url_deploy" target="_blank">
                             <h6 class="card-text">Link al deploy</h6>
                         </a>
                     </div>
                 </div>
                 <div class="col-md-2" *ngIf="visualizarBotones()">
-                    <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                        href="" data-bs-toggle="modal" data-bs-target="#editarProyecto" data-bs-whatever="@mdo"
-                        role="button">
-
-                    <div class="modal fade" id="editarProyecto" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Proyecto</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="mb-3">
-                                            <label for="url" class="col-form-label">Ingrese imagen del proyecto:</label>
-                                            <input type="url" class="form-control" name="imagenProyectoEditar"
-                                                id="imagenProyectoEditar" placeholder="https://example.com"
-                                                pattern="https://.*">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="nombreProyectoEditar" class="col-form-label">Nombre del
-                                                proyecto:</label>
-                                            <input type="text" class="form-control" id="nombreProyectoEditar"
-                                                name="nombreProyectoEditar">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="descripcionProyectoEditar"
-                                                class="col-form-label">Descripción:</label>
-                                            <input type="text" class="form-control" id="descripcionProyectoEditar"
-                                                name="descripcionProyectoEditar">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="url" class="col-form-label">URL del repositorio:</label>
-                                            <input type="url" class="form-control" name="urlProyectoEditar"
-                                                id="urlProyectoEditar" placeholder="https://example.com"
-                                                pattern="https://.*">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="url" class="col-form-label">URL del deploy:</label>
-                                            <input type="url" class="form-control" name="deployProyectoEditar"
-                                                id="deployProyectoEditar" placeholder="https://example.com"
-                                                pattern="https://.*">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger"
-                                        data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-success">Aceptar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <img src="./assets/img/iconos/eliminar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                        href="" role="button" (click)="eliminarProyecto()">
+                    <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
+                        data-bs-target="#editarProyecto" data-bs-whatever="@mdo"
+                        (click)="obtenerIdProyecto(proyecto.id)">
+                        <img src="./assets/img/iconos/editar.svg" />
+                    </button>
+                    <button class="btn btn-light btn-outline-info btn-floating m-1"
+                        (click)="deleteProyecto(proyecto.id)">
+                        <img src="./assets/img/iconos/eliminar.svg" />
+                    </button>
                 </div>
             </div>
         </li>
     </ul>
+
+
 </div>
 <!---------------------------------------- Fin Sección Proyectos ---------------------------------------------------->
