@@ -132,40 +132,37 @@
     </div>
 
     <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let proyecto of proyectoList">
-            <div class="row g-0">
-                <div class="col-md-1">
-                </div>
-                <div class="col-md-4 pe-4">
-                    <div>
-                        <img [src]="proyecto.imagen_proyecto" class="img-fluid" alt="Imagen">
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="card-body">
-                        <h4 class="card-title letracolor">{{proyecto.nombre_proyecto}}</h4>
-                        <h5 class="card-text">{{proyecto.descripcion_proyecto}}</h5>
-                        <a [href]="proyecto.url_repositorio" target="_blank">
-                            <h6 class="card-text">Link al repositorio</h6>
-                        </a>
-                        <a [href]="proyecto.url_deploy" target="_blank">
-                            <h6 class="card-text">Link al deploy</h6>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-2" *ngIf="visualizarBotones()">
-                    <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
-                        data-bs-target="#editarProyecto" data-bs-whatever="@mdo"
-                        (click)="obtenerIdProyecto(proyecto.id)">
-                        <img src="./assets/img/iconos/editar.svg" />
-                    </button>
-                    <button class="btn btn-light btn-outline-info btn-floating m-1"
-                        (click)="deleteProyecto(proyecto.id)">
-                        <img src="./assets/img/iconos/eliminar.svg" />
-                    </button>
-                </div>
+        <div class="row g-0">
+            <div class="col-md-2">
             </div>
-        </li>
+            <div class="col-md-8">
+                <mdb-carousel [controls]="true" [indicators]="true" [dark]="true" class="mb-4 mt-4">
+                    <mdb-carousel-item *ngFor="let proyecto of proyectoList">
+                        <img [src]="proyecto.imagen_proyecto" class="d-block card-img-top" alt="..." />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h4 class="card-title letracolor">{{proyecto.nombre_proyecto}}</h4>
+                            <h5 class="card-text">{{proyecto.descripcion_proyecto}}</h5>
+                            <a [href]="proyecto.url_repositorio" target="_blank">
+                                <h6 class="card-text">Link al repositorio</h6>
+                            </a>
+                            <a [href]="proyecto.url_deploy" target="_blank">
+                                <h6 class="card-text">Link al deploy</h6>
+                            </a>
+
+                            <div class="col-md-1" *ngIf="visualizarBotones()">
+                                <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
+                                    data-bs-target="#editarProyecto" data-bs-whatever="@mdo" (click)="obtenerIdProyecto(proyecto.id)">
+                                    <img src="./assets/img/iconos/editar.svg" />
+                                </button>
+                                <button class="btn btn-light btn-outline-info btn-floating m-1" (click)="deleteProyecto(proyecto.id)">
+                                    <img src="./assets/img/iconos/eliminar.svg" />
+                                </button>
+                            </div>
+                        </div>
+                    </mdb-carousel-item>
+                </mdb-carousel>
+            </div>
+        </div>
     </ul>
 
     <div class="modal fade" id="editarProyecto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
