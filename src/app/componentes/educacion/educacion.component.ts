@@ -40,6 +40,10 @@ export class EducacionComponent {
   }
 
   public updateEducacion(id: number) {
+    if(this.educacion.fin_educacion === ""){
+      this.educacion.fin_educacion = "En curso";
+    }
+    
     this.educacionService.actualizarEducacion(id, this.educacion).subscribe(data => {
       Swal.fire({
         icon: 'info',
