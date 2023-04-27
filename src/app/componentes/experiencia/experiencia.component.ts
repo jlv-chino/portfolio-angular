@@ -38,6 +38,41 @@ export class ExperienciaComponent {
   }
 
   public updateExperiencia(id: number) {
+
+    if (this.experiencia.inicio_experiencia === "") {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error !!!',
+        text: 'La fecha de inicio no puede estar vacía',
+        timer: 1800
+      })
+
+      this.listExperiencia();
+
+      return;
+    }
+
+    if (this.experiencia.fin_experiencia === "") {
+      this.experiencia.fin_experiencia = "Actualmente";
+
+      const fechaActual = new Date(Date.now());
+      const fechaInicio = new Date(this.experiencia.inicio_experiencia);
+      const yearDiff = fechaActual.getFullYear() - fechaInicio.getFullYear();
+      const monthDiff = fechaActual.getMonth() - fechaInicio.getMonth();
+      const totalMonthDiff = (yearDiff * 12) + monthDiff;
+      this.experiencia.tiempo_experiencia = totalMonthDiff;
+
+    }else{
+
+      const fechaFin = new Date(this.experiencia.fin_experiencia);
+      const fechaInicio = new Date(this.experiencia.inicio_experiencia);
+      const yearDiff = fechaFin.getFullYear() - fechaInicio.getFullYear();
+      const monthDiff = fechaFin.getMonth() - fechaInicio.getMonth();
+      const totalMonthDiff = (yearDiff * 12) + monthDiff;
+      this.experiencia.tiempo_experiencia = totalMonthDiff;
+
+    }
+
     this.experienciaService.actualizarExperiencia(id, this.experiencia).subscribe(data => {
       Swal.fire({
         icon: 'info',
