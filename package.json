@@ -25,6 +25,7 @@
     "bootstrap-icons": "^1.10.4",
     "jquery": "^3.6.3",
     "mdb-angular-ui-kit": "^4.1.0",
+    "moment": "^2.29.4",
     "ngx-bootstrap": "^10.2.0",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.4.8",
