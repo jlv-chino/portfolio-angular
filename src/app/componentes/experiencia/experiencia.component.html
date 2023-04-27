@@ -6,9 +6,10 @@
                 <h3 class="display-5 text-center">Experiencia</h3>
             </div>
             <div class="col-md-1" *ngIf="visualizarBotones()">
-                <img src="./assets/img/iconos/agregar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                    data-bs-toggle="modal" data-bs-target="#agregarExperiencia" data-bs-whatever="@mdo" href=""
-                    role="button">
+                <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
+                    data-bs-target="#agregarExperiencia" data-bs-whatever="@mdo" (click)="limpiarExperiencia()">
+                    <img src="./assets/img/iconos/agregar.svg" />
+                </button>
             </div>
         </div>
     </div>
@@ -18,42 +19,99 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Experiencia</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">AGREGAR EXPERIENCIA</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="url" class="col-form-label">Ingrese imagen/icono de experiencia:</label>
-                            <input type="url" class="form-control" name="imagenExperiencia" id="imagenExperiencia"
-                                placeholder="https://example.com" pattern="https://.*">
+                    <form (ngSubmit)="addExperiencia()" #addExperienciaForm="ngForm">
+                        <div class="form-group">
+
+                            <label>Puesto Experiencia: </label>
+                            <input type="text" class="form-control" id="nombre_proyecto"
+                                [(ngModel)]="experiencia.puesto_experiencia" name="puesto_experiencia" required
+                                minlength="5" maxlength="50" #puesto_experiencia="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="puesto_experiencia.invalid && (puesto_experiencia.dirty || puesto_experiencia.touched)">
+                                <div *ngIf="puesto_experiencia.errors?.['required']">
+                                    Escribir un puesto de experiencia !!!
+                                </div>
+                                <div *ngIf="puesto_experiencia.errors?.['minlength']">
+                                    Mínimo 5 caracteres !!!
+                                </div>
+                                <div *ngIf="puesto_experiencia.errors?.['maxlength']">
+                                    Máximo 50 caracteres !!!
+                                </div>
+                            </div>
+
+                            <label>Compañia Experiencia: </label>
+                            <input type="text" class="form-control" id="compania_experiencia"
+                                [(ngModel)]="experiencia.compania_experiencia" name="compania_experiencia" required
+                                minlength="2" maxlength="30" #compania_experiencia="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="compania_experiencia.invalid && (compania_experiencia.dirty || compania_experiencia.touched)">
+                                <div *ngIf="compania_experiencia.errors?.['required']">
+                                    Escribir una compañia de experiencia !!!
+                                </div>
+                                <div *ngIf="compania_experiencia.errors?.['minlength']">
+                                    Mínimo 2 caracteres !!!
+                                </div>
+                                <div *ngIf="compania_experiencia.errors?.['maxlength']">
+                                    Máximo 30 caracteres !!!
+                                </div>
+                            </div>
+
+                            <label>Modalidad Experiencia: </label>
+                            <input type="text" class="form-control" id="modalidad_experiencia"
+                                [(ngModel)]="experiencia.modalidad_experiencia" name="modalidad_experiencia" required
+                                minlength="5" maxlength="30" #modalidad_experiencia="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="modalidad_experiencia.invalid && (modalidad_experiencia.dirty || modalidad_experiencia.touched)">
+                                <div *ngIf="modalidad_experiencia.errors?.['required']">
+                                    Escribir una modalidad de experiencia !!!
+                                </div>
+                                <div *ngIf="modalidad_experiencia.errors?.['minlength']">
+                                    Mínimo 5 caracteres !!!
+                                </div>
+                                <div *ngIf="modalidad_experiencia.errors?.['maxlength']">
+                                    Máximo 30 caracteres !!!
+                                </div>
+                            </div>
+
+                            <label>Imagen de experiencia: (Ingrese URL)</label>
+                            <input type="text" class="form-control" id="imagen_experiencia"
+                                [(ngModel)]="experiencia.imagen_experiencia" name="imagen_experiencia" required
+                                pattern="https?:\/\/([a-zA-Z0-9]([^ @&%$\\\/()=?¿!.,:;]|\d)*+[a-zA-Z]{2,4}([\.][a-zA-Z]{2})?\/?((?<=\/)(([^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]|\d)+[\/]?)*(#(?<=#)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*%|]*)?(\?(?<=\?)([^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+(&(?<=&)[^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+[=][^ @&$#\\\/()+=?¿!,:;'&quot;^´*|]+)*))?)?"
+                                minlength="5" maxlength="100" #imagen_experiencia="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="imagen_experiencia.invalid && (imagen_experiencia.dirty || imagen_experiencia.touched)">
+                                <div *ngIf="imagen_experiencia.errors?.['required']">
+                                    Ingresar URL de imagen de la experiencia !!!
+                                </div>
+                                <div *ngIf="imagen_experiencia.errors?.['minlength']">
+                                    Mínimo 5 caracteres !!!
+                                </div>
+                                <div *ngIf="imagen_experiencia.errors?.['maxlength']">
+                                    Máximo 100 caracteres !!!
+                                </div>
+                                <div *ngIf="imagen_experiencia.errors?.['pattern']">
+                                    Formato de URL válida : https://www.google.com/
+                                </div>
+                            </div>
+
+                            <label>Inicio de experiencia : </label>
+                            <input type="month" lang="es" class="form-control" id="inicio_experiencia"
+                                [(ngModel)]="experiencia.inicio_experiencia" name="inicio_experiencia"
+                                #inicio_experiencia="ngModel">
+
+                            <label>Fin de experiencia : (Dejar vacío si está trabajando actualmente)</label>
+                            <input type="month" lang="es" class="form-control" id="fin_experiencia"
+                                [(ngModel)]="experiencia.fin_experiencia" name="fin_experiencia"
+                                #inicio_experiencia="ngModel">
+
                         </div>
-                        <div class="mb-3">
-                            <label for="nombreExperiencia" class="col-form-label">Compañia:</label>
-                            <input type="text" class="form-control" id="nombreExperiencia">
-                        </div>
-                        <div class="mb-3">
-                            <label for="puestoExperiencia" class="col-form-label">Puesto:</label>
-                            <input type="text" class="form-control" id="puestoExperiencia">
-                        </div>
-                        <div class="mb-3">
-                            <label for="modalidadExperiencia" class="col-form-label">Modalidad:</label>
-                            <input type="text" class="form-control" id="modalidadExperiencia">
-                        </div>
-                        <div class="mb-3">
-                            <label for="fechaInicioExperiencia" class="col-form-label">Fecha de inicio:</label>
-                            <input type="date" class="form-control" id="fechaInicioExperiencia"
-                                name="fechaInicioExperiencia" min="1970-01-01" max="2023-05-15">
-                        </div>
-                        <div class="mb-3">
-                            <label for="fechaFinExperiencia" class="col-form-label">Fecha de fin:</label>
-                            <input type="date" class="form-control" id="fechaFinExperiencia" name="fechaFinExperiencia">
-                        </div>
+                        <button class="btn btn-success mt-4" [disabled]="!addExperienciaForm.form.valid"
+                            data-bs-dismiss="modal">Guardar</button>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success">Aceptar</button>
                 </div>
             </div>
         </div>
@@ -65,79 +123,29 @@
                 <div class="col-md-1">
                 </div>
                 <div class="col-md-1">
-                    <img [src]="experiencia.img" class="img-fluid" alt="Icono de AngularJS">
+                    <img [src]="experiencia.imagen_experiencia" class="img-fluid" alt="Icono">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h4 class="card-title">{{experiencia.position}}</h4>
-                        <h6 class="card-text">{{experiencia.company}} - {{experiencia.mode}}</h6>
+                        <h4 class="card-title">{{experiencia.puesto_experiencia}}</h4>
+                        <h6 class="card-text">{{experiencia.compania_experiencia}} - {{experiencia.modalidad_experiencia}}</h6>
                         <h5>
-                            <small class="text-muted">{{experiencia.start}} - {{experiencia.end}} -
-                                {{experiencia.timeelapsed}}</small>
+                            <small class="text-muted">{{experiencia.inicio_experiencia}} -
+                                {{experiencia.fin_experiencia}} -
+                                {{experiencia.tiempo_experiencia}}</small>
                         </h5>
                     </div>
                 </div>
                 <div class="col-md-2" *ngIf="visualizarBotones()">
-
-                    <img src="./assets/img/iconos/editar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                        data-bs-toggle="modal" data-bs-target="#editarExperiencia" data-bs-whatever="@mdo" href=""
-                        role="button">
-
-                    <div class="modal fade" id="editarExperiencia" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar esta Experiencia</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="mb-3">
-                                            <label for="url" class="col-form-label">Ingrese imagen/icono de
-                                                experiencia:</label>
-                                            <input type="url" class="form-control" name="imagenExperiencia"
-                                                id="imagenExperiencia" placeholder="https://example.com"
-                                                pattern="https://.*">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="nombreEditar" class="col-form-label">Compañia:</label>
-                                            <input type="text" class="form-control" id="nombreExperiencia">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="apellidoEditar" class="col-form-label">Puesto:</label>
-                                            <input type="text" class="form-control" id="puestoExperiencia">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="puestoEditar" class="col-form-label">Modalidad:</label>
-                                            <input type="text" class="form-control" id="modalidadExperiencia">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="fechaInicioExperienciaEditar" class="col-form-label">Fecha de
-                                                inicio:</label>
-                                            <input type="date" class="form-control" id="fechaInicioExperienciaEditar"
-                                                name="fechaInicioExperienciaEditar" min="1970-01-01" max="2023-05-15">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="fechaFinExperienciaEditar" class="col-form-label">Fecha de
-                                                fin:</label>
-                                            <input type="date" class="form-control" id="fechaFinExperienciaEditar"
-                                                name="fechaFinExperienciaEditar">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger"
-                                        data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-success">Aceptar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <img src="./assets/img/iconos/eliminar.svg" class="btn btn-light btn-outline-info btn-floating m-1"
-                        href="" role="button" (click)="eliminarExperiencia()">
+                    <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
+                        data-bs-target="#editarExperiencia" data-bs-whatever="@mdo"
+                        (click)="obtenerIdExperiencia(experiencia.id)">
+                        <img src="./assets/img/iconos/editar.svg" />
+                    </button>
+                    <button class="btn btn-light btn-outline-info btn-floating m-1"
+                        (click)="deleteExperiencia(experiencia.id)">
+                        <img src="./assets/img/iconos/eliminar.svg" />
+                    </button>
                 </div>
             </div>
         </li>

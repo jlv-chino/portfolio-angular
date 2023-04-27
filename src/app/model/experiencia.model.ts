@@ -6,7 +6,7 @@ export class Experiencia{
     modalidad_experiencia: string;
     imagen_experiencia: string;
     inicio_experiencia: string;
-    fin_proyecto: string;
-    tiempo_experiencia: Date = new Date(Date.now());
+    fin_experiencia: string;
+    tiempo_experiencia: Date; 
     
 }

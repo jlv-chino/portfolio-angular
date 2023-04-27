@@ -175,14 +175,7 @@
 
                             <label>Fin de educación: (Dejar vacío si está en curso)</label>
                             <input type="month" lang="es" class="form-control" id="fin_educacion"
-                                [(ngModel)]="educacion.fin_educacion" name="fin_educacion" maxlength="10"
-                                #fin_educacion="ngModel">
-                            <div class="alert alert-danger"
-                                *ngIf="fin_educacion.invalid && (fin_educacion.dirty || fin_educacion.touched)">
-                                <div *ngIf="fin_educacion.errors?.['maxlength']">
-                                    Máximo 10 caracteres !!!
-                                </div>
-                            </div>
+                                [(ngModel)]="educacion.fin_educacion" name="fin_educacion" #fin_educacion="ngModel">
 
                             <label>Imagen de educación: (Ingrese URL)</label>
                             <input type="text" class="form-control" id="imagen_educacion"

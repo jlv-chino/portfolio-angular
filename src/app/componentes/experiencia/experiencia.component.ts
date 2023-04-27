@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
+import { Experiencia } from 'src/app/model/experiencia.model';
 import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
-
+import { ExperienciaService } from 'src/app/servicios/experiencia.service';
 import Swal from 'sweetalert2';
-import { PortfolioService } from '../../servicios/portfolio.service';
 
 @Component({
   selector: 'app-experiencia',
@@ -12,23 +12,96 @@ import { PortfolioService } from '../../servicios/portfolio.service';
 export class ExperienciaComponent {
 
   experienciaList: any;
-  constructor(private datosPortfolio: PortfolioService, private loginPrd: AutentificacionService){
+  id: number;
+  experiencia: Experiencia = new Experiencia();
 
-  }
+  constructor(private loginPrd: AutentificacionService, private experienciaService: ExperienciaService) { }
 
   ngOnInit(): void {
-    this.datosPortfolio.obtenerDatos().subscribe(data => {
-      this.experienciaList = data.experience;
-    });
+
+    this.listExperiencia();
+
   }
 
-  public visualizarBotones():boolean{
+  public visualizarBotones(): boolean {
     return this.loginPrd.hablitarLogueo()
   }
 
-  public eliminarExperiencia(){
+  public obtenerIdExperiencia(id: number) {
+    this.experienciaService.obtenerExperiencia(id).subscribe(data => {
+      this.experiencia = data;
+    });
+  }
+
+  public limpiarExperiencia() {
+    this.experiencia = new Experiencia();
+  }
+
+  public updateExperiencia(id: number) {
+    this.experienciaService.actualizarExperiencia(id, this.experiencia).subscribe(data => {
+      Swal.fire({
+        icon: 'info',
+        title: 'Experiencia Actualizada!!!',
+        showConfirmButton: false,
+        timer: 1800
+      })
+
+      this.listExperiencia();
+
+    }, err => alert(err.message))
+  }
+
+  public addExperiencia() {
+    if (this.experiencia.inicio_experiencia === "") {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error !!!',
+        text: 'La fecha de inicio no puede estar vacía',
+        timer: 1800
+      })
+
+      this.listExperiencia();
+
+      return;
+    }
+
+    if (this.experiencia.fin_experiencia === "") {
+      this.experiencia.fin_experiencia = "Actualmente";
+
+      const fechaActual = new Date(Date.now());
+      const fechaInicio = new Date(this.experiencia.inicio_experiencia);
+      const yearDiff = fechaActual.getFullYear() - fechaInicio.getFullYear();
+      const monthDiff = fechaActual.getMonth() - fechaInicio.getMonth();
+      const totalMonthDiff = (yearDiff * 12) + monthDiff;
+      this.experiencia.tiempo_experiencia = new Date(totalMonthDiff);
+
+    }else{
+
+      const fechaFin = new Date(this.experiencia.fin_experiencia);
+      const fechaInicio = new Date(this.experiencia.inicio_experiencia);
+      const yearDiff = fechaFin.getFullYear() - fechaInicio.getFullYear();
+      const monthDiff = fechaFin.getMonth() - fechaInicio.getMonth();
+      const totalMonthDiff = (yearDiff * 12) + monthDiff;
+      this.experiencia.tiempo_experiencia = new Date(totalMonthDiff);
+
+    }
+
+    this.experienciaService.crearExperiencia(this.experiencia).subscribe(dato => {
+      Swal.fire({
+        icon: 'info',
+        title: 'Experiencia Agregada!!!',
+        showConfirmButton: false,
+        timer: 1800
+      })
+
+      this.listExperiencia();
+
+    }, err => alert(err.message));
+  }
+
+  public deleteExperiencia(id: number) {
     Swal.fire({
-      title: '¿Desea eliminar esta experiencia?',
+      title: '¿Desea eliminar este experiencia?',
       text: "Eliminar definitivamente",
       icon: 'warning',
       showCancelButton: true,
@@ -37,13 +110,32 @@ export class ExperienciaComponent {
       confirmButtonText: 'Ok'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Experiencia eliminada!!!',
-          'Tu experiencia fue eliminada',
-          'success'
-        )
+
+        this.experienciaService.eliminarExperiencia(id).subscribe(data => {
+
+        });
+
+        Swal.fire({
+          icon: 'info',
+          title: 'Experiencia Eliminada !!!',
+          showConfirmButton: false,
+          timer: 1800
+        })
+
+        this.listExperiencia();
+
       }
     })
+
   }
-    
+
+  private listExperiencia() {
+    this.experienciaService.listaDeExperiencia().subscribe(data => {
+      this.experienciaList = data;
+    });
+  }
+
+
+
+
 }
