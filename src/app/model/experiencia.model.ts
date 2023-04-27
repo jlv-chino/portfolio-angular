@@ -7,6 +7,6 @@ export class Experiencia{
     imagen_experiencia: string;
     inicio_experiencia: string;
     fin_experiencia: string;
-    tiempo_experiencia: Date; 
+    tiempo_experiencia: number; 
     
 }

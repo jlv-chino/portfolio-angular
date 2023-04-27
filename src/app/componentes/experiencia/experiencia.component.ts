@@ -73,7 +73,7 @@ export class ExperienciaComponent {
       const yearDiff = fechaActual.getFullYear() - fechaInicio.getFullYear();
       const monthDiff = fechaActual.getMonth() - fechaInicio.getMonth();
       const totalMonthDiff = (yearDiff * 12) + monthDiff;
-      this.experiencia.tiempo_experiencia = new Date(totalMonthDiff);
+      this.experiencia.tiempo_experiencia = totalMonthDiff;
 
     }else{
 
@@ -82,7 +82,7 @@ export class ExperienciaComponent {
       const yearDiff = fechaFin.getFullYear() - fechaInicio.getFullYear();
       const monthDiff = fechaFin.getMonth() - fechaInicio.getMonth();
       const totalMonthDiff = (yearDiff * 12) + monthDiff;
-      this.experiencia.tiempo_experiencia = new Date(totalMonthDiff);
+      this.experiencia.tiempo_experiencia = totalMonthDiff;
 
     }
 
