@@ -4,6 +4,9 @@ import { PortfolioService } from '../../servicios/portfolio.service';
 import { AutentificacionService } from '../../servicios/autentificacion.service';
 
 import Swal from 'sweetalert2';
+import { TokenService } from 'src/app/servicios/token.service';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { LoginUsuario } from 'src/app/model/login-usuario';
 
 @Component({
   selector: 'app-header',
@@ -13,16 +16,20 @@ import Swal from 'sweetalert2';
 export class HeaderComponent {
 
   buttonText: string = 'Login';
-
-  public inputs:boolean = true;
-
-  public myForm!:FormGroup;
-
+  public inputs: boolean = true;
+  public myForm!: FormGroup;
   miPortfolio: any;
 
-  constructor(private datosPortfolio: PortfolioService, private fb: FormBuilder, private loginPrd:AutentificacionService) {
+  isLogged = false;
+  isLogginFail = false;
+  loginUsuario: LoginUsuario;
+  usuario: string;
+  password: string;
+  roles: string[] = [];
+  errMsj!: string;
 
-  }
+  constructor(private datosPortfolio: PortfolioService, private fb: FormBuilder, private loginPrd: AutentificacionService,
+    private tokenService: TokenService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.myForm = this.createMyForm();
@@ -30,6 +37,12 @@ export class HeaderComponent {
     this.datosPortfolio.obtenerDatos().subscribe(data => {
       this.miPortfolio = data;
     });
+
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+      this.isLogginFail = false;
+      this.roles = this.tokenService.getAuthorities();
+    }
   }
 
   private createMyForm(): FormGroup {
@@ -41,10 +54,10 @@ export class HeaderComponent {
 
   public submitFormulario() {
 
-   if (this.buttonText === "Logout") {
+    if (this.buttonText === "Logout") {
       this.buttonText = 'Login';
       this.inputs = true;
-      
+
       Swal.fire({
         icon: 'info',
         title: 'Sesión cerrada con éxito',
@@ -52,9 +65,9 @@ export class HeaderComponent {
         timer: 1800
       })
 
-      setTimeout(function(){
+      setTimeout(function () {
         window.location.reload();
-     }, 1800);
+      }, 1800);
 
       return;
     }
@@ -82,6 +95,27 @@ export class HeaderComponent {
       this.buttonText = 'Logout';
       this.inputs = false;
     }
+
+
+
+    this.loginUsuario = new LoginUsuario(this.usuario, this.password);
+    this.authService.login(this.loginUsuario).subscribe(data => {
+      this.isLogged = true;
+      this.isLogginFail = false;
+      this.tokenService.setToken(data.token);
+      this.tokenService.setUserName(data.nombreUsuario);
+      this.tokenService.setAuthorities(data.authorities);
+      this.roles = data.authorities;
+    }, err => {
+      this.isLogged = false;
+      this.isLogginFail = true;
+      this.errMsj = err.error.mensaje;
+      alert(this.errMsj);
+
+    })
+
+
+
   }
 
   public get f(): any {

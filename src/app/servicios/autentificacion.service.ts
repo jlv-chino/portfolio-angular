@@ -10,7 +10,7 @@ export class AutentificacionService {
   constructor() { }
 
   public ingresarAplicativo(obj:any):boolean{
-    this.ingresar = obj.usuario == 'admin' && obj.password == '12345';
+    this.ingresar = obj.usuario == 'admin' && obj.password == 'admin';
     return this.ingresar;
   }
 
