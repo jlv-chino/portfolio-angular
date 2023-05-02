@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 import { Skill } from 'src/app/model/skill.model';
 import { SkillService } from 'src/app/servicios/skill.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-skill',
@@ -15,13 +16,22 @@ export class SkillComponent {
   id: number;
   skill: Skill = new Skill();
 
+  isLogged = false;
+
   porcentaje: string = "%";
 
-  constructor(private loginPrd: AutentificacionService, private skillService: SkillService) { }
+  constructor(private loginPrd: AutentificacionService, private skillService: SkillService,
+    private tokenService: TokenService) { }
 
   ngOnInit(): void {
 
     this.listSkill(); 
+
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
 
   }
 

@@ -73,7 +73,5 @@ export class PerfilComponent {
 
     }, err => alert(err.message));
   }
-
   
-
 }

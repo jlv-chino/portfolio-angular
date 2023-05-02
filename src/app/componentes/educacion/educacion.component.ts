@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 import { Educacion } from 'src/app/model/educacion.model';
 import { EducacionService } from 'src/app/servicios/educacion.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-educacion',
@@ -15,13 +16,22 @@ export class EducacionComponent {
   id: number;
   educacion: Educacion = new Educacion();
 
-  constructor(private loginPrd: AutentificacionService, private educacionService: EducacionService){
+  isLogged = false;
+
+  constructor(private loginPrd: AutentificacionService, private educacionService: EducacionService,
+     private tokenService: TokenService){
 
   }
 
   ngOnInit(): void {
     
     this.listEducacion();
+
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
 
   }
 

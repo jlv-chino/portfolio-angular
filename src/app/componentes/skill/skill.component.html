@@ -5,7 +5,7 @@
             <div class="col-md-11">
                 <h3 class="display-5 text-center">Hard Skill & Soft Skill</h3>
             </div>
-            <div class="col-md-1" *ngIf="visualizarBotones()">
+            <div class="col-md-1" *ngIf="isLogged">
                 <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
                     data-bs-target="#agregarSkill" data-bs-whatever="@mdo" (click)="limpiarSkill()">
                     <img src="./assets/img/iconos/agregar.svg" />
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2" *ngIf="visualizarBotones()">
+                <div class="col-md-2" *ngIf="isLogged">
                     <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
                         data-bs-target="#editarSkill" data-bs-whatever="@mdo" (click)="obtenerIdSkill(skill.id)">
                         <img src="./assets/img/iconos/editar.svg" />

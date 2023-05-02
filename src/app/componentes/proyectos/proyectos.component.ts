@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 import { Proyecto } from 'src/app/model/proyecto.model';
 import { ProyectoService } from 'src/app/servicios/proyecto.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 
 @Component({
@@ -16,11 +17,20 @@ export class ProyectosComponent {
   id: number;
   proyecto: Proyecto = new Proyecto();
 
-  constructor(private loginPrd: AutentificacionService, private proyectoService: ProyectoService){}
+  isLogged = false;
+
+  constructor(private loginPrd: AutentificacionService, private proyectoService: ProyectoService,
+    private tokenService: TokenService){}
 
   ngOnInit(): void {
     
     this.listProyecto(); 
+
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
 
   }
 

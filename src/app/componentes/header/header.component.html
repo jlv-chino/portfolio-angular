@@ -61,14 +61,14 @@
 
                     <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
 
-                        <div class="form-outline form-white mb-4" *ngIf="inputs">
-                          <input type="email" id="nombreUsuario" name="nombreUsuario" class="form-control form-control-lg"
+                        <div class="form-outline form-white col-7 mb-4 mt-4" *ngIf="inputs">
+                          <input type="email" id="nombreUsuario" name="nombreUsuario" size="6" class="form-control"
                             [(ngModel)]="nombreUsuario" required />
                           <label class="form-label" for="nombreUsuario">Usuario</label>
                         </div>
         
-                        <div class="form-outline form-white mb-4" *ngIf="inputs">
-                          <input type="password" id="password" name="password" class="form-control form-control-lg" [(ngModel)]="password"
+                        <div class="form-outline form-white col-7 mb-4" *ngIf="inputs">
+                          <input type="password" id="password" name="password" class="form-control input-sm" [(ngModel)]="password"
                             required />
                           <label class="form-label" for="password">Password</label>
                         </div>
