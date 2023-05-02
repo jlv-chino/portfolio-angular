@@ -59,7 +59,27 @@
                     </ul>
 
 
+                    <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
 
+                        <div class="form-outline form-white mb-4" *ngIf="inputs">
+                          <input type="email" id="nombreUsuario" name="nombreUsuario" class="form-control form-control-lg"
+                            [(ngModel)]="nombreUsuario" required />
+                          <label class="form-label" for="nombreUsuario">Usuario</label>
+                        </div>
+        
+                        <div class="form-outline form-white mb-4" *ngIf="inputs">
+                          <input type="password" id="password" name="password" class="form-control form-control-lg" [(ngModel)]="password"
+                            required />
+                          <label class="form-label" for="password">Password</label>
+                        </div>
+        
+                        <!-- <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p> -->
+        
+                        <button class="btn btn-outline-light btn-lg px-5" type="submit" [(ngModel)]="buttonText">{{buttonText}}</button>
+        
+                      </form>
+
+                    <!--
                     <form class="d-flex mt-3" role="search" [formGroup]="myForm" (ngSubmit)="submitFormulario()">
                         <ul>
                             <div class="login" *ngIf="inputs">
@@ -82,7 +102,7 @@
                                 <button class="btn btn-success" [(ngModel)]="buttonText">{{buttonText}}</button>
                             </div>
                         </ul>
-                    </form>
+                    </form>-->
 
 
 

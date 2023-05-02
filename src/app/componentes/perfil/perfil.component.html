@@ -6,7 +6,7 @@
     <div class="col-md-4" id="perfil">
       <img [src]="persona.imagen" class="img-fluid rounded-circle" id="perfilimg" alt="Imagen">
     </div>
-    <div class="col-md-4" *ngIf="visualizarBotones()">
+    <div class="col-md-4" *ngIf="isLogged">
       <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
         data-bs-target="#editarPerfil" data-bs-whatever="@mdo">
         <img src="./assets/img/iconos/editar.svg" />

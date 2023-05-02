@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { TokenService } from 'src/app/servicios/token.service';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { LoginUsuario } from 'src/app/model/login-usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,18 +16,96 @@ import { LoginUsuario } from 'src/app/model/login-usuario';
 })
 export class HeaderComponent {
 
+  isLogged = false;
+  isLogginFail = false;
+  loginUsuario!: LoginUsuario;
+  nombreUsuario!: string;
+  password!: string;
+  roles: string[] = [];
+  errMsj!: string;
+
+  public inputs: boolean = true;
   buttonText: string = 'Login';
+
+  constructor(private tokenService: TokenService, private authService: AuthService,
+              private router: Router) { }
+
+  ngOnInit(): void {
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+      this.isLogginFail = false;
+      this.roles = this.tokenService.getAuthorities();
+    }
+  }
+
+  onLogin(): void {
+
+    if (this.buttonText === "Logout") {
+      this.buttonText = 'Login';
+      this.inputs = true;
+
+      this.tokenService.logOut();
+
+      Swal.fire({
+        icon: 'info',
+        title: 'Sesión cerrada con éxito',
+        //showConfirmButton: false,
+        //timer: 1800
+      })
+
+      /*setTimeout(function () {
+        window.location.reload();
+      }, 1800);*/
+
+      return;
+    }
+
+    this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.password);
+    this.authService.login(this.loginUsuario).subscribe(data => {
+      this.isLogged = true;
+      this.isLogginFail = false;
+      this.tokenService.setToken(data.token);
+      this.tokenService.setUserName(data.nombreUsuario);
+      this.tokenService.setAuthorities(data.authorities);
+      this.roles = data.authorities;
+
+      this.inputs = false;
+      this.buttonText = 'Logout';
+
+      this.router.navigate([''])
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Login',
+        text: 'Usuario correcto!!!',
+        //showConfirmButton: false,
+        //timer: 1800
+      })
+
+      setTimeout(function () {
+      window.location.reload();
+      }, 1800);
+
+    }, err => {
+      this.isLogged = false;
+      this.isLogginFail = true;
+      this.errMsj = err.error.mensaje;
+      console.log(this.errMsj);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Usuario o password invalido'
+      })
+    })
+  }
+
+
+
+
+  /*buttonText: string = 'Login';
   public inputs: boolean = true;
   public myForm!: FormGroup;
   miPortfolio: any;
-
-  isLogged = false;
-  isLogginFail = false;
-  loginUsuario: LoginUsuario;
-  usuario: string;
-  password: string;
-  roles: string[] = [];
-  errMsj!: string;
 
   constructor(private datosPortfolio: PortfolioService, private fb: FormBuilder, private loginPrd: AutentificacionService,
     private tokenService: TokenService, private authService: AuthService) { }
@@ -96,30 +175,10 @@ export class HeaderComponent {
       this.inputs = false;
     }
 
-
-
-    this.loginUsuario = new LoginUsuario(this.usuario, this.password);
-    this.authService.login(this.loginUsuario).subscribe(data => {
-      this.isLogged = true;
-      this.isLogginFail = false;
-      this.tokenService.setToken(data.token);
-      this.tokenService.setUserName(data.nombreUsuario);
-      this.tokenService.setAuthorities(data.authorities);
-      this.roles = data.authorities;
-    }, err => {
-      this.isLogged = false;
-      this.isLogginFail = true;
-      this.errMsj = err.error.mensaje;
-      alert(this.errMsj);
-
-    })
-
-
-
   }
 
   public get f(): any {
     return this.myForm.controls;
-  }
+  }*/
 
 }

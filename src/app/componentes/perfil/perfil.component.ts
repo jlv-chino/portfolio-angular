@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { Persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/servicios/persona.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-perfil',
@@ -15,9 +16,11 @@ export class PerfilComponent {
   personaList: any;
   id: number;
   persona: Persona;
+  
+  isLogged = false;
 
   constructor(private personaService: PersonaService, private loginPrd: AutentificacionService,
-    private route: ActivatedRoute, private router: Router) { }
+    private route: ActivatedRoute, private router: Router,  private tokenService: TokenService) { }
 
   ngOnInit(): void {
 
@@ -26,12 +29,18 @@ export class PerfilComponent {
     this.personaService.obtenerPerfil(this.id).subscribe(data => {
       this.persona = data;
     });
+    
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
 
   }
 
-  public visualizarBotones(): boolean {
+  /*public visualizarBotones(): boolean {
     return this.loginPrd.hablitarLogueo()
-  }
+  }*/
 
   public infoContacto() {
     Swal.fire({
@@ -61,10 +70,6 @@ export class PerfilComponent {
       })
 
       this.listPersona();
-
-      /*setTimeout(function () {
-        window.location.reload();
-      }, 1800);*/
 
     }, err => alert(err.message));
   }
