@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
+import { interceptorProvider } from './servicios/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,9 @@ import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
     ReactiveFormsModule,
     MdbCarouselModule
   ],
-  providers: [],
+  providers: [
+    interceptorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

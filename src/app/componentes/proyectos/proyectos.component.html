@@ -136,9 +136,9 @@
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
-                <mdb-carousel [controls]="true" [indicators]="true" [dark]="true" class="mb-4 mt-4">
-                    <mdb-carousel-item *ngFor="let proyecto of proyectoList">
-                        <img [src]="proyecto.imagen_proyecto" class="d-block card-img-top" alt="..." />
+                <mdb-carousel [controls]="true" [dark]="true" [pause]="false" [ride]="true" class="mb-4 mt-4">
+                    <mdb-carousel-item *ngFor="let proyecto of proyectoList" [interval]="3000">
+                        <img [src]="proyecto.imagen_proyecto" class="d-block card-img-top" alt="imagen" />
                         <div class="carousel-caption d-none d-md-block">
                             <h4 class="card-title letracolor">{{proyecto.nombre_proyecto}}</h4>
                             <h5 class="card-text">{{proyecto.descripcion_proyecto}}</h5>
@@ -151,10 +151,12 @@
 
                             <div class="col-md-1" *ngIf="isLogged">
                                 <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
-                                    data-bs-target="#editarProyecto" data-bs-whatever="@mdo" (click)="obtenerIdProyecto(proyecto.id)">
+                                    data-bs-target="#editarProyecto" data-bs-whatever="@mdo"
+                                    (click)="obtenerIdProyecto(proyecto.id)">
                                     <img src="./assets/img/iconos/editar.svg" />
                                 </button>
-                                <button class="btn btn-light btn-outline-info btn-floating m-1" (click)="deleteProyecto(proyecto.id)">
+                                <button class="btn btn-light btn-outline-info btn-floating m-1"
+                                    (click)="deleteProyecto(proyecto.id)">
                                     <img src="./assets/img/iconos/eliminar.svg" />
                                 </button>
                             </div>
