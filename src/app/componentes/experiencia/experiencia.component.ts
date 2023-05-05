@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Experiencia } from 'src/app/model/experiencia.model';
-import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 import { ExperienciaService } from 'src/app/servicios/experiencia.service';
 import { TokenService } from 'src/app/servicios/token.service';
 import Swal from 'sweetalert2';
@@ -18,8 +17,7 @@ export class ExperienciaComponent {
 
   isLogged = false;
 
-  constructor(private loginPrd: AutentificacionService, private experienciaService: ExperienciaService,
-    private tokenService: TokenService) { }
+  constructor(private experienciaService: ExperienciaService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
 
@@ -31,10 +29,6 @@ export class ExperienciaComponent {
       this.isLogged = false;
     }
 
-  }
-
-  public visualizarBotones(): boolean {
-    return this.loginPrd.hablitarLogueo()
   }
 
   public obtenerIdExperiencia(id: number) {
@@ -179,8 +173,5 @@ export class ExperienciaComponent {
       this.experienciaList = data;
     });
   }
-
-
-
 
 }

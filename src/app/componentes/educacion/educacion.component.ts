@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
-import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 import { Educacion } from 'src/app/model/educacion.model';
 import { EducacionService } from 'src/app/servicios/educacion.service';
 import { TokenService } from 'src/app/servicios/token.service';
@@ -18,10 +17,7 @@ export class EducacionComponent {
 
   isLogged = false;
 
-  constructor(private loginPrd: AutentificacionService, private educacionService: EducacionService,
-     private tokenService: TokenService){
-
-  }
+  constructor(private educacionService: EducacionService, private tokenService: TokenService){}
 
   ngOnInit(): void {
     
@@ -33,10 +29,6 @@ export class EducacionComponent {
       this.isLogged = false;
     }
 
-  }
-
-  public visualizarBotones():boolean{
-    return this.loginPrd.hablitarLogueo()
   }
 
   public obtenerIdEducacion(id: number) {

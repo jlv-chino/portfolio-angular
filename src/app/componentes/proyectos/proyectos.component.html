@@ -136,33 +136,54 @@
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
-                <mdb-carousel [controls]="true" [dark]="true" [pause]="false" [ride]="true" class="mb-4 mt-4">
-                    <mdb-carousel-item *ngFor="let proyecto of proyectoList" [interval]="3000">
-                        <img [src]="proyecto.imagen_proyecto" class="d-block card-img-top" alt="imagen" />
-                        <div class="carousel-caption d-none d-md-block">
-                            <h4 class="card-title letracolor">{{proyecto.nombre_proyecto}}</h4>
-                            <h5 class="card-text">{{proyecto.descripcion_proyecto}}</h5>
-                            <a [href]="proyecto.url_repositorio" target="_blank">
-                                <h6 class="card-text">Link al repositorio</h6>
-                            </a>
-                            <a [href]="proyecto.url_deploy" target="_blank">
-                                <h6 class="card-text">Link al deploy</h6>
-                            </a>
+                <div id="carouselExampleDark" class="carousel carousel-dark slide m-4" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" *ngFor="let proyecto of proyectoList" data-bs-interval="3000">
+                            <img [src]="proyecto.imagen_proyecto" class="d-block card-img-top w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>First slide label</h5>
+                                <h4 class="card-title letracolor">{{proyecto.nombre_proyecto}}</h4>
+                                <h5 class="card-text">{{proyecto.descripcion_proyecto}}</h5>
+                                <a [href]="proyecto.url_repositorio" target="_blank">
+                                    <h6 class="card-text">Link al repositorio</h6>
+                                </a>
+                                <a [href]="proyecto.url_deploy" target="_blank">
+                                    <h6 class="card-text">Link al deploy</h6>
+                                </a>
 
-                            <div class="col-md-1" *ngIf="isLogged">
-                                <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
-                                    data-bs-target="#editarProyecto" data-bs-whatever="@mdo"
-                                    (click)="obtenerIdProyecto(proyecto.id)">
-                                    <img src="./assets/img/iconos/editar.svg" />
-                                </button>
-                                <button class="btn btn-light btn-outline-info btn-floating m-1"
-                                    (click)="deleteProyecto(proyecto.id)">
-                                    <img src="./assets/img/iconos/eliminar.svg" />
-                                </button>
+                                <div class="col-md-1" *ngIf="isLogged">
+                                    <button class="btn btn-light btn-outline-info btn-floating m-1"
+                                        data-bs-toggle="modal" data-bs-target="#editarProyecto" data-bs-whatever="@mdo"
+                                        (click)="obtenerIdProyecto(proyecto.id)">
+                                        <img src="./assets/img/iconos/editar.svg" />
+                                    </button>
+                                    <button class="btn btn-light btn-outline-info btn-floating m-1"
+                                        (click)="deleteProyecto(proyecto.id)">
+                                        <img src="./assets/img/iconos/eliminar.svg" />
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </mdb-carousel-item>
-                </mdb-carousel>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
         </div>
     </ul>

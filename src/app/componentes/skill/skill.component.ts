@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
-import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 import { Skill } from 'src/app/model/skill.model';
 import { SkillService } from 'src/app/servicios/skill.service';
 import { TokenService } from 'src/app/servicios/token.service';
@@ -20,8 +19,7 @@ export class SkillComponent {
 
   porcentaje: string = "%";
 
-  constructor(private loginPrd: AutentificacionService, private skillService: SkillService,
-    private tokenService: TokenService) { }
+  constructor(private skillService: SkillService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
 
@@ -101,10 +99,6 @@ export class SkillComponent {
       }
     })
 
-  }
-
-  public visualizarBotones(): boolean {
-    return this.loginPrd.hablitarLogueo()
   }
 
   private listSkill() {

@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
 import Swal from 'sweetalert2';
 import { Persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/servicios/persona.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
@@ -19,8 +17,7 @@ export class PerfilComponent {
   
   isLogged = false;
 
-  constructor(private personaService: PersonaService, private loginPrd: AutentificacionService,
-    private route: ActivatedRoute, private router: Router,  private tokenService: TokenService) { }
+  constructor(private personaService: PersonaService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
 
@@ -37,10 +34,6 @@ export class PerfilComponent {
     }
 
   }
-
-  /*public visualizarBotones(): boolean {
-    return this.loginPrd.hablitarLogueo()
-  }*/
 
   public infoContacto() {
     Swal.fire({

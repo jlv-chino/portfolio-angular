@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AutentificacionService } from 'src/app/servicios/autentificacion.service';
-
 import Swal from 'sweetalert2';
 import { Persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/servicios/persona.service';
@@ -19,10 +17,7 @@ export class QuiensoyComponent {
 
   isLogged = false;
 
-  constructor(private personaService: PersonaService, private loginPrd: AutentificacionService,
-    private tokenService: TokenService){
-
-  }
+  constructor(private personaService: PersonaService,private tokenService: TokenService){}
 
   ngOnInit(): void {
     
@@ -37,10 +32,6 @@ export class QuiensoyComponent {
       this.isLogged = false;
     }
 
-  }
-
-  public visualizarBotones():boolean{
-    return this.loginPrd.hablitarLogueo()
   }
 
   public listPersona() {
