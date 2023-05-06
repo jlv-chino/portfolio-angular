@@ -139,13 +139,21 @@
                         <div class="carousel-item active" *ngFor="let proyecto of proyectoList" data-bs-interval="3000">
                             <img [src]="proyecto.imagen_proyecto" class="d-block card-img-top" alt="Imagen proyecto">
                             <div class="carousel-caption d-none d-md-block">
-                                <h4 class="card-title letracolor">{{proyecto.nombre_proyecto}}</h4>
-                                <h5 class="card-text">{{proyecto.descripcion_proyecto}}</h5>
+                                <h4 class="card-title"><span
+                                        class="p-2 mb-2 bg-dark text-white border border-primary rounded">{{proyecto.nombre_proyecto}}</span>
+                                </h4>
+                                <h5 class="card-text mt-4"><span
+                                        class="p-2 mb-2 bg-dark text-white border border-primary rounded">{{proyecto.descripcion_proyecto}}</span>
+                                </h5>
                                 <a [href]="proyecto.url_repositorio" target="_blank">
-                                    <h6 class="card-text">Link al repositorio</h6>
+                                    <h6 class="card-text mt-4"><span
+                                            class="p-2 mb-2 bg-dark text-white border border-primary rounded">Link al
+                                            repositorio</span></h6>
                                 </a>
                                 <a [href]="proyecto.url_deploy" target="_blank">
-                                    <h6 class="card-text">Link al deploy</h6>
+                                    <h6 class="card-text mt-4"><span
+                                            class="p-2 mb-2 bg-dark text-white border border-primary rounded">Link al
+                                            deploy</span></h6>
                                 </a>
 
                                 <div class="col-md-1" *ngIf="isLogged">
