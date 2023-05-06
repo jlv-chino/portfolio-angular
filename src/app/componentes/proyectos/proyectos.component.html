@@ -132,14 +132,12 @@
     </div>
 
     <ul class="list-group list-group-flush">
-        <div class="row g-0">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-10">
-                <div id="carouselExampleDark" class="carousel carousel-dark slide m-4" data-bs-ride="carousel">
+        <div class="row g-0 m-5">
+            <div class="col-md-12 justify-content-center">
+                <div id="carouselExampleDark" class="carousel carousel-dark slide m-2" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" *ngFor="let proyecto of proyectoList" data-bs-interval="3000">
-                            <img [src]="proyecto.imagen_proyecto" class="d-block card-img-top" alt="...">
+                            <img [src]="proyecto.imagen_proyecto" class="d-block card-img-top" alt="Imagen proyecto">
                             <div class="carousel-caption d-none d-md-block">
                                 <h4 class="card-title letracolor">{{proyecto.nombre_proyecto}}</h4>
                                 <h5 class="card-text">{{proyecto.descripcion_proyecto}}</h5>

@@ -1,17 +1,21 @@
 <!---------------------------------------- Sección Quién soy ---------------------------------------------------->
-<div class="card mb-3" name="quiensoy" id="quiensoy">
+<div class="card mb-3 justify-content-center" name="quiensoy" id="quiensoy">
     <div class="row g-0">
-        <div class="col-md-11 txt">
+        <div class="col-md-6 mt-2">
+        </div>
+        <div class="col-md-6 mt-2" *ngIf="isLogged">
+            <button class="btn btn-light btn-outline-info justify-content-center btn-floating m-1" data-bs-toggle="modal"
+                data-bs-target="#editarQuienSoy" data-bs-whatever="@mdo">
+                <img src="./assets/img/iconos/editar.svg" />
+            </button>
+        </div>
+    </div>
+    <div class="row g-0">
+        <div class="col-md-12 txt justify-content-center">
             <div class="card-body">
                 <h4 class="card-title display-5 text-center">{{persona.titulo_acerca_de}}</h4>
                 <h6 class="card-text display-6 text-center">{{persona.acerca_de}}</h6>
             </div>
-        </div>
-        <div class="col-md-4" *ngIf="isLogged">
-            <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
-                data-bs-target="#editarQuienSoy" data-bs-whatever="@mdo">
-                <img src="./assets/img/iconos/editar.svg" />
-            </button>
         </div>
     </div>
 </div>
