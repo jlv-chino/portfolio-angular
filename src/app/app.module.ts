@@ -15,7 +15,6 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InicioComponent } from './componentes/inicio/inicio.component';
-import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { interceptorProvider } from './servicios/interceptor.service';
 
 @NgModule({
@@ -37,8 +36,7 @@ import { interceptorProvider } from './servicios/interceptor.service';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    MdbCarouselModule
+    ReactiveFormsModule
   ],
   providers: [
     interceptorProvider
