@@ -39,6 +39,7 @@ export class ContactameComponent {
           window.location.reload();
         }, 1800);
         
+        location.href = 'https://mailthis.to/confirm'
         console.log(response)
       }, error => {
         console.warn(error.responseText)
