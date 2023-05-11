@@ -2,14 +2,14 @@
 <div class="card mb-3" name="experiencia" id="experiencia">
     <div class="container text-center txtsec">
         <div class="row g-0">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <h3 class="display-5 text-center">Experiencia</h3>
-            </div>
-            <div class="col-md-1" *ngIf="isLogged">
-                <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
-                    data-bs-target="#agregarExperiencia" data-bs-whatever="@mdo" (click)="limpiarExperiencia()">
-                    <img src="./assets/img/iconos/agregar.svg" />
-                </button>
+                <div *ngIf="isLogged">
+                    <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
+                        data-bs-target="#agregarExperiencia" data-bs-whatever="@mdo" (click)="limpiarExperiencia()">
+                        <img src="./assets/img/iconos/agregar.svg" />
+                    </button>
+                </div>
             </div>
         </div>
     </div>

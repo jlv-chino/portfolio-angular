@@ -2,14 +2,15 @@
 <div class="card mb-3" name="proyectos" id="proyectos">
     <div class="container text-center txtsec">
         <div class="row g-0">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <h3 class="display-5 text-center">Proyectos</h3>
-            </div>
-            <div class="col-md-1" *ngIf="isLogged">
-                <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
-                    data-bs-target="#agregarProyecto" data-bs-whatever="@mdo" (click)="limpiarProyecto()">
-                    <img src="./assets/img/iconos/agregar.svg" />
-                </button>
+
+                <div *ngIf="isLogged">
+                    <button class="btn btn-light btn-outline-info btn-floating m-1" data-bs-toggle="modal"
+                        data-bs-target="#agregarProyecto" data-bs-whatever="@mdo" (click)="limpiarProyecto()">
+                        <img src="./assets/img/iconos/agregar.svg" />
+                    </button>
+                </div>                
             </div>
         </div>
     </div>
@@ -133,18 +134,47 @@
 
     <ul class="list-group list-group-flush">
         <div class="row g-0 m-5">
-            <div class="col-md-12 justify-content-center">
+            <div class="col-md-12 d-flex align-items-center justify-content-center">
                 <div id="carouselExampleDark" class="carousel carousel-dark slide m-2" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" *ngFor="let proyecto of proyectoList" data-bs-interval="3000">
-                            <img [src]="proyecto.imagen_proyecto" class="d-block card-img-top" alt="Imagen proyecto">
+
+                            <div class="card">
+                                <img [src]="proyecto.imagen_proyecto" class="d-block card-img-top"
+                                    alt="Imagen proyecto">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{proyecto.nombre_proyecto}}</h4>
+                                    <h5>
+                                        <small class="text-muted">{{proyecto.descripcion_proyecto}}</small>
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <a [href]="proyecto.url_repositorio" target="_blank" class="me-4">Link al
+                                        repositorio</a>
+                                    <a [href]="proyecto.url_deploy" target="_blank">Link al deploy</a>
+                                </div>
+
+                                <div class="col-md-1" *ngIf="isLogged">
+                                    <button class="btn btn-light btn-outline-info btn-floating m-1"
+                                        data-bs-toggle="modal" data-bs-target="#editarProyecto" data-bs-whatever="@mdo"
+                                        (click)="obtenerIdProyecto(proyecto.id)">
+                                        <img src="./assets/img/iconos/editar.svg" />
+                                    </button>
+                                    <button class="btn btn-light btn-outline-info btn-floating m-1"
+                                        (click)="deleteProyecto(proyecto.id)">
+                                        <img src="./assets/img/iconos/eliminar.svg" />
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!--<img [src]="proyecto.imagen_proyecto" class="d-block card-img-top" alt="Imagen proyecto">
                             <div class="carousel-caption d-none d-md-block">
                                 <h4 class="card-title"><span
                                         class="p-2 mb-2 bg-dark text-white border border-primary rounded">{{proyecto.nombre_proyecto}}</span>
                                 </h4>
-                                <h5 class="card-text mt-4"><span
+                                <p class="card-text mt-4"><span
                                         class="p-2 mb-2 bg-dark text-white border border-primary rounded">{{proyecto.descripcion_proyecto}}</span>
-                                </h5>
+                                </p>
                                 <a [href]="proyecto.url_repositorio" target="_blank">
                                     <h6 class="card-text mt-4"><span
                                             class="p-2 mb-2 bg-dark border border-primary rounded">Link al
@@ -167,7 +197,8 @@
                                         <img src="./assets/img/iconos/eliminar.svg" />
                                     </button>
                                 </div>
-                            </div>
+                            </div>-->
+
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
