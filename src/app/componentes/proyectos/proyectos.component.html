@@ -10,7 +10,7 @@
                         data-bs-target="#agregarProyecto" data-bs-whatever="@mdo" (click)="limpiarProyecto()">
                         <img src="./assets/img/iconos/agregar.svg" />
                     </button>
-                </div>                
+                </div>
             </div>
         </div>
     </div>
@@ -138,23 +138,27 @@
                 <div id="carouselExampleDark" class="carousel carousel-dark slide m-2" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" *ngFor="let proyecto of proyectoList" data-bs-interval="3000">
-
                             <div class="card">
-                                <img [src]="proyecto.imagen_proyecto" class="d-block card-img-top"
+                                <img [src]="proyecto.imagen_proyecto" class="d-block card-img-top mb-3"
                                     alt="Imagen proyecto">
                                 <div class="card-body">
-                                    <h4 class="card-title">{{proyecto.nombre_proyecto}}</h4>
-                                    <h5>
-                                        <small class="text-muted">{{proyecto.descripcion_proyecto}}</small>
-                                    </h5>
-                                </div>
-                                <div class="card-body">
-                                    <a [href]="proyecto.url_repositorio" target="_blank" class="me-4">Link al
-                                        repositorio</a>
-                                    <a [href]="proyecto.url_deploy" target="_blank">Link al deploy</a>
+                                    <div class="alert alert-success" role="alert">
+                                        <h4 class="alert-heading">{{proyecto.nombre_proyecto}}</h4>
+                                        <h5>
+                                            <small class="text-muted">{{proyecto.descripcion_proyecto}}</small>
+                                        </h5>
+                                        <hr>
+                                        <a [href]="proyecto.url_repositorio" target="_blank" class="me-4">
+                                            LINK AL REPOSITORIO
+                                        </a>
+                                        <a [href]="proyecto.url_deploy" target="_blank">
+                                            LINK AL DEPLOY
+                                        </a>
+                                    </div>
                                 </div>
 
-                                <div class="col-md-1" *ngIf="isLogged">
+                                <div class="col-md-12 d-flex align-items-center justify-content-center"
+                                    *ngIf="isLogged">
                                     <button class="btn btn-light btn-outline-info btn-floating m-1"
                                         data-bs-toggle="modal" data-bs-target="#editarProyecto" data-bs-whatever="@mdo"
                                         (click)="obtenerIdProyecto(proyecto.id)">
