@@ -93,7 +93,9 @@ export class ProyectosComponent {
           timer: 1800
         })
 
-        this.listProyecto();
+        setTimeout(function () {
+          window.location.reload();
+        }, 1800);
 
       }
     })
